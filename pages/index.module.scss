@@ -1,0 +1,9 @@
+@import "../styles/variables.scss";
+
+.button {
+  background-color: var(--c-primary);
+
+  @include mq(md) {
+    background-color: map-get($red, 500);
+  }
+}
