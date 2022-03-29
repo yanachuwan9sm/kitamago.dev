@@ -4,6 +4,11 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from "next";
+
+import cheerio from "cheerio";
+import hljs from "highlight.js";
+import "highlight.js/styles/hybrid.css";
+
 import { client } from "../../libs/client";
 import { Blog } from "../../types/blog";
 
@@ -21,20 +26,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // microCMSへAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   const id = ctx.params?.id as string;
-  const data = await client.get({ endpoint: "blog", contentId: id });
+  const blog = await client.get({ endpoint: "blog", contentId: id });
+
+  const $ = cheerio.load(blog.body);
+  $("pre code").each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass("hljs");
+  });
+
   return {
     props: {
-      blog: data,
+      blog,
+      highlightedBody: $.html(),
     },
   };
 };
 
 type Props = {
   blog: Blog;
+  highlightedBody: string;
 };
 
 const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   blog,
+  highlightedBody,
 }: Props) => {
   return (
     <main>
@@ -47,7 +63,7 @@ const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       ))} */}
       <div
         dangerouslySetInnerHTML={{
-          __html: `${blog.body}`,
+          __html: `${highlightedBody}`,
         }}
       />
     </main>
