@@ -42,6 +42,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <main className={styles.main}>
         <h1 className={styles.title}>kitamago-log</h1>
 
+        {/* 記事一覧表示 */}
         <div>
           <ul>
             {blogs.map((blog: any) => (
