@@ -1,0 +1,64 @@
+@import "../../../styles/variables.scss";
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @include mq(md) {
+    justify-content: center;
+  }
+}
+
+.container_defalut {
+  @extend .container;
+  background-color: #ffffff;
+}
+
+.container_scroll {
+  @extend .container;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 2rem;
+  color: #272727;
+  @include mq(md) {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  a {
+    color: #0070f3;
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; // li要素をul要素の中で末尾に寄せる
+  list-style: none;
+  @include mq(md) {
+    display: none;
+  }
+  li {
+    padding: 0 2rem;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-bottom: solid 3px #272727;
+    }
+  }
+}
