@@ -1,0 +1,73 @@
+.carouselControler {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: initial;
+}
+
+.prevArrow {
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nextArrow {
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.carouselDots {
+  display: flex;
+  margin: 0 8px;
+  @media (max-width: 479px) {
+    display: none;
+  }
+  li {
+    align-items: center;
+    display: flex;
+    height: 8;
+    justify-content: center;
+    margin: 0 8px;
+    width: 8;
+    @media (max-width: 769px) {
+      margin: 0 4px;
+    }
+    button {
+      align-items: center;
+      display: flex;
+      height: 8;
+      margin: 0;
+      width: 8;
+      &:focus::before {
+        color: rgba(0, 0, 0, 0.87);
+      }
+      ::before {
+        color: #c2c2c3;
+        height: 8;
+        line-height: 1;
+        opacity: 1;
+        width: 8;
+      }
+    }
+    .slick-active {
+      button {
+        ::before {
+          color: #8a8b8b;
+        }
+      }
+    }
+  }
+}
+
+.CarouselOperationButton {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 8;
+}
+
+.bunnerCalouselLink {
+  padding: 0 8px;
+}

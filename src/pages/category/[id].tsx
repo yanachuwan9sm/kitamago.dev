@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { client } from "../../libs/client";
 import { Blog, Tag } from "../../types/blog";
 
+// 取得したパスより一致するカテゴリーのid値を取得
 const filterTagId = (tags: Tag[], targetQuery: string) => {
   return tags.filter((tag: Tag) => tag.tag === targetQuery);
 };
@@ -26,6 +27,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 // microCMSへAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
+  // microCMSの filter機能 はidでしか取得出来ない為、
+  // 取得したパスより一致するカテゴリーのid値を取得する
   const data = await client.get({ endpoint: "tag" });
   const tags: Tag[] = data.contents;
   const params = ctx.params?.id as string;
