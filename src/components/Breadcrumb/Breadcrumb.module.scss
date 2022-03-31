@@ -1,0 +1,25 @@
+.breadcrumb {
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+.crumbitem {
+  position: relative;
+  display: inline;
+  margin-right: 20px;
+  a {
+    color: #331cbf;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &::after {
+    position: absolute;
+    content: ">";
+    bottom: -1px;
+    right: -15px;
+  }
+  &:last-child::after {
+    content: "";
+  }
+}
