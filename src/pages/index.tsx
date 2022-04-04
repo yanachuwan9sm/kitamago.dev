@@ -3,9 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+import style from "../pages/index.module.scss";
+
 import { client } from "../libs/client";
 import { Blog } from "../types/blog";
 import { Carousel } from "../components/Carousel/Carousel";
+import AnimationBg from "../components/AnimationBg/AnimationBg";
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps = async () => {
@@ -14,8 +17,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const carouselArray: carouselItems[] = blog.map((blog) => ({
     url: `/blog/${blog.id}`,
+    title: blog.title,
     image: blog.image.url,
     alt: blog.title,
+    updatedAt: blog.updatedAt.slice(0, 10),
   }));
 
   return {
@@ -29,13 +34,14 @@ export const getStaticProps: GetStaticProps = async () => {
 type Props = {
   blogs: Blog[];
   carouselArray: carouselItems[];
-  // tags: Tag[];
 };
 
 type carouselItems = {
   url: string;
+  title: string;
   image: string;
   alt: string;
+  updatedAt: string;
 };
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
@@ -44,9 +50,10 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }: Props) => {
   return (
     <>
+      <AnimationBg />
       <Carousel carouselItems={carouselArray} />
       {/* 記事一覧表示 */}
-      <div>
+      <div className={style.container}>
         <ul>
           {blogs.map((blog: any) => (
             <li key={blog.id}>

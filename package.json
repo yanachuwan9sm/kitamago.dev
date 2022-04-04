@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.2.1",
     "cheerio": "^1.0.0-rc.10",
     "highlight.js": "^11.5.0",
     "microcms-js-sdk": "^2.0.0",
@@ -20,11 +21,13 @@
     "react-feather": "^2.0.9",
     "react-icons": "^4.3.1",
     "react-slick": "^0.28.1",
+    "react-spring": "^9.4.4",
     "sass": "^1.49.9",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
+    "@react-spring/types": "^9.4.4",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",

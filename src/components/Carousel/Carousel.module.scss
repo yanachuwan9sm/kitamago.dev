@@ -1,59 +1,93 @@
-.carouselControler {
+.container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: initial;
+}
+
+.wrapper {
+  width: 660px;
+  .slick-prev {
+    ::before {
+      color: #8a8b8b;
+    }
+  }
+  .slick-next {
+    ::before {
+      color: #8a8b8b;
+    }
+  }
 }
 
 .prevArrow {
+  background: none;
+  border: none;
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
   padding: 8px;
 }
 
 .nextArrow {
+  background: none;
+  border: none;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   padding: 8px;
 }
 
-.carouselDots {
+.carouselControler {
   display: flex;
-  margin: 0 8px;
-  @media (max-width: 479px) {
-    display: none;
-  }
-  li {
-    align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  position: initial; //要素にプロパティの初期値（または既定値）を設定
+
+  .carouselDots {
     display: flex;
-    height: 8;
     justify-content: center;
     margin: 0 8px;
-    width: 8;
-    @media (max-width: 769px) {
-      margin: 0 4px;
+    @media (max-width: 479px) {
+      display: none;
     }
-    button {
+    li {
       align-items: center;
       display: flex;
       height: 8;
-      margin: 0;
+      justify-content: center;
+      margin: 0 8px;
       width: 8;
-      &:focus::before {
-        color: rgba(0, 0, 0, 0.87);
+      @media (max-width: 769px) {
+        margin: 0 4px;
       }
-      ::before {
-        color: #c2c2c3;
-        height: 8;
-        line-height: 1;
-        opacity: 1;
-        width: 8;
+      .slick-active {
+        button {
+          transition: 0.3s all;
+          background-color: #000000;
+          border-color: #000000;
+        }
       }
-    }
-    .slick-active {
+
       button {
-        ::before {
-          color: #8a8b8b;
+        display: flex;
+        align-items: center;
+        background: rgb(134, 134, 134);
+        border: solid 2px rgb(134, 134, 134);
+        border-radius: 10px;
+        font-size: 0px;
+        height: 8;
+        margin: 0;
+        width: 8;
+
+        &:hover,
+        &:focus {
+          transition: 0.3s all;
+          background-color: #000000;
+          border-color: #000000;
+        }
+
+        &::before {
+          color: #000000;
+          height: 8;
+          line-height: 1;
+          opacity: 1;
+          width: 8;
         }
       }
     }
@@ -68,6 +102,37 @@
   padding: 8;
 }
 
-.bunnerCalouselLink {
-  padding: 0 8px;
+.CalouselItem {
+  padding: 0 3.15rem;
+  display: flex;
+  justify-content: center;
+
+  a {
+    .carouselItemImage {
+      margin: auto;
+      overflow: hidden;
+      transition: 0.5s all;
+    }
+    .CalouselItemTitle {
+      text-align: center;
+      color: rgba(0, 0, 0, 0.8);
+      padding: 0 2px;
+      transition: 0.5s all;
+    }
+    .CalouselItemDispcription {
+      display: flex;
+      justify-content: space-between;
+    }
+    &:hover {
+      .carouselItemImage {
+        transform: scale(1.2, 1.2);
+        transition: 0.5s all;
+        opacity: 0.7;
+      }
+      .CalouselItemTitle {
+        transition: 0.5s all;
+        opacity: 0.7;
+      }
+    }
+  }
 }
