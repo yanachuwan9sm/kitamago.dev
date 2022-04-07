@@ -6,9 +6,15 @@ import {
 } from "next";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { Sidebar } from "react-feather";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import SideBar from "../../components/SideBar/SideBar";
 import { client } from "../../libs/client";
 import { Blog, Tag } from "../../types/blog";
+
+import style from "./category.module.scss";
 
 // 取得したパスより一致するカテゴリーのid値を取得
 const filterTagId = (tags: Tag[], targetQuery: string) => {
@@ -57,19 +63,46 @@ const CategoryId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { id } = router.query;
   return (
     <main>
-      <p>Tags : {id}</p>
-      {blogs && (
-        <ul>
-          {blogs.map((blog) => (
-            <>
-              <li key={blog.id}>
-                <h2>{blog.title}</h2>
-                <p>{blog.publishedAt}</p>
-              </li>
-            </>
-          ))}
-        </ul>
-      )}
+      {/* パンくずリスト */}
+      <Breadcrumb
+        blogPageInfo={{
+          categoryId: "",
+          categoryName: "",
+          blogTitle: "",
+        }}
+        pageTitle={id as string}
+      />
+
+      <div className={style.container}>
+        <div className={style.content}>
+          <h1>{id}</h1>
+
+          {blogs && (
+            <ul>
+              {blogs.map((blog) => (
+                <>
+                  <li key={blog.id}>
+                    <Link href={`/blog/${blog.id}`}>
+                      <a>
+                        <Image
+                          className={style.carouselItemImage}
+                          src={blog.image.url}
+                          width="580px"
+                          height="360px"
+                        />
+                        <h2>{blog.title}</h2>
+                        <p>{blog.publishedAt.slice(0, 10)}</p>
+                      </a>
+                    </Link>
+                  </li>
+                </>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <SideBar />
+      </div>
     </main>
   );
 };

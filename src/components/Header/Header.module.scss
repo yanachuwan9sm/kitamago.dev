@@ -5,10 +5,11 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 0.8rem 1rem;
+  padding: 0.3rem 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 30;
   @include mq(md) {
     justify-content: center;
   }
@@ -21,44 +22,53 @@
 
 .container_scroll {
   @extend .container;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .title {
   margin: 0;
-  line-height: 1.15;
   font-size: 2rem;
   color: #272727;
   @include mq(md) {
     font-size: 1.7rem;
+
     text-align: center;
-  }
-  a {
-    color: #0070f3;
-    text-decoration: none;
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
-    }
   }
 }
 
 .list {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end; // li要素をul要素の中で末尾に寄せる
   list-style: none;
   @include mq(md) {
     display: none;
   }
   li {
-    padding: 0 2rem;
-
-    &:hover,
-    &:focus,
-    &:active {
-      border-bottom: solid 3px #272727;
+    a {
+      display: block;
+      position: relative;
+      padding: 0 1.8rem;
+      color: #1d1d1d;
+      &:hover::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -25%;
+        width: 60%;
+        height: 2px;
+        background: #1d1d1d;
+        transform: translateX(-50%);
+        animation: border_anim 0.5s linear forwards;
+      }
     }
+  }
+}
+
+@keyframes border_anim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
   }
 }

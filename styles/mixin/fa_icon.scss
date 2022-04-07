@@ -1,34 +1,3 @@
-// 使いまわしたい変数をここに入れる
-//
-
-$breakpoints: (
-  "sm": 576px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
-);
-
-$red: (
-  50: #ffebee,
-  100: #ffcdd2,
-  200: #ef9a9a,
-  300: #e57373,
-  400: #ef5350,
-  500: #f44336,
-  600: #e53935,
-  700: #d32f2f,
-  800: #c62828,
-  900: #b71c1c,
-);
-
-// レスポンシブ対応用の mixin
-@mixin mq($size) {
-  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
-    @content;
-  }
-}
-
-// Font Awesome用の mixin
 @mixin fa_icon($type: "") {
   $font_weight: 900;
 
@@ -53,8 +22,6 @@ $red: (
     content: "\f017";
   } @else if $type == "tag" {
     content: "\f02b";
-  } @else if $type == "list-ul" {
-    content: "\f0ca";
   }
 
   font-weight: $font_weight;

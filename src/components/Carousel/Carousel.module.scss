@@ -1,3 +1,5 @@
+@import "./styles/variables.scss";
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,6 +7,9 @@
 
 .wrapper {
   width: 660px;
+  @include mq(md) {
+    width: 100%;
+  }
   .slick-prev {
     ::before {
       color: #8a8b8b;
@@ -17,42 +22,33 @@
   }
 }
 
-.prevArrow {
-  background: none;
-  border: none;
-  color: rgba(0, 0, 0, 0.87);
-  cursor: pointer;
-  padding: 8px;
-}
-
+// 矢印ボタン
+.prevArrow,
 .nextArrow {
   background: none;
   border: none;
-  color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  padding: 8px;
 }
 
 .carouselControler {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: initial; //要素にプロパティの初期値（または既定値）を設定
+  margin: 0 auto;
+  position: initial;
 
   .carouselDots {
     display: flex;
     justify-content: center;
-    margin: 0 8px;
-    @media (max-width: 479px) {
-      display: none;
-    }
+    margin: 0 auto;
+
     li {
       align-items: center;
       display: flex;
-      height: 8;
       justify-content: center;
       margin: 0 8px;
-      width: 8;
+      padding-left: 0px;
       @media (max-width: 769px) {
         margin: 0 4px;
       }
@@ -94,30 +90,31 @@
   }
 }
 
-.CarouselOperationButton {
-  background: none;
-  border: none;
-  color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-  padding: 8;
-}
-
 .CalouselItem {
   padding: 0 3.15rem;
   display: flex;
   justify-content: center;
+  @include mq(md) {
+    padding: 0 3.15rem;
+  }
 
   a {
+    .CalouselItemBody {
+      //background-color: rgb(255, 255, 255, 0.8);
+    }
     .carouselItemImage {
-      margin: auto;
+      //margin: 0 auto;
       overflow: hidden;
       transition: 0.5s all;
     }
     .CalouselItemTitle {
-      text-align: center;
-      color: rgba(0, 0, 0, 0.8);
+      //color: rgba(0, 0, 0, 0.8);
       padding: 0 2px;
       transition: 0.5s all;
+      @include mq(md) {
+        font-size: small;
+        padding: 0 2px;
+      }
     }
     .CalouselItemDispcription {
       display: flex;

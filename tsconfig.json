@@ -14,6 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true
+    // "typeRoots": [
+    //   "node_modules/@types", // デフォルト
+    //   "src/types" // ここも読み込むように追加
+    // ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

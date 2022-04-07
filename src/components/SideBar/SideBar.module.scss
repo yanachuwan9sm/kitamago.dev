@@ -1,0 +1,32 @@
+@import "../../../styles/variables.scss";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+  padding-right: 2rem;
+  @include mq(lg) {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+  .s_container {
+    padding: 1rem 0;
+
+    .s_header {
+      border-bottom: solid 3px #d6d6d6;
+      padding: 0.5rem 0;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        border-bottom: solid 3px #505050;
+        bottom: -3px;
+        width: 40%;
+      }
+    }
+    .s_content {
+      padding: 1rem 0;
+    }
+  }
+}

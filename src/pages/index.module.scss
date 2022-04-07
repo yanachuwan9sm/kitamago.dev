@@ -1,14 +1,18 @@
 @import "../../styles/variables.scss";
 
-.button {
-  background-color: var(--c-primary);
-
-  @include mq(md) {
-    background-color: map-get($red, 500);
-  }
-}
-
 .container {
   display: flex;
-  flex-direction: column;
+  padding: 6rem 0;
+}
+
+.wrapper {
+  width: 800px;
+  height: 400px;
+
+  margin: 2rem auto;
+  position: relative;
+
+  @include mq(md) {
+    width: 100%;
+  }
 }

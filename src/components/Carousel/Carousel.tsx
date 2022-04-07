@@ -5,6 +5,7 @@ import Slider, { CustomArrowProps } from "react-slick";
 
 import { FaChevronCircleLeft } from "react-icons/fa";
 import { FaChevronCircleRight } from "react-icons/fa";
+import { IconContext } from "react-icons";
 import style from "../Carousel/Carousel.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,17 +23,21 @@ type carouselProps = {
 
 const SlickArrowLeft = ({ onClick }: CustomArrowProps): JSX.Element => {
   return (
-    <button className={style.prevArrow} onClick={onClick}>
-      <FaChevronCircleLeft />
-    </button>
+    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+      <button className={style.prevArrow} onClick={onClick}>
+        <FaChevronCircleLeft />
+      </button>
+    </IconContext.Provider>
   );
 };
 
 const SlickArrowRight = ({ onClick }: CustomArrowProps): JSX.Element => {
   return (
-    <button className={style.nextArrow} onClick={onClick}>
-      <FaChevronCircleRight />
-    </button>
+    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+      <button className={style.nextArrow} onClick={onClick}>
+        <FaChevronCircleRight />
+      </button>
+    </IconContext.Provider>
   );
 };
 
@@ -57,22 +62,19 @@ export const Carousel = (props: carouselProps) => {
     arrows: false,
     centerMode: true,
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
-    // variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <SlickArrowLeft />,
-    nextArrow: <SlickArrowRight />,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          adaptiveHeight: true,
-          adaptiveWidth: true,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       adaptiveHeight: true,
+    //       adaptiveWidth: true,
+    //     },
+    //   },
+    // ],
 
     appendDots: (dots: any) => (
       <>
@@ -102,14 +104,14 @@ export const Carousel = (props: carouselProps) => {
                   width="580px"
                   height="360px"
                 />
-
-                <h2 className={style.CalouselItemTitle}>
-                  {carouselItem.title}
-                </h2>
-
-                <div className={style.CalouselItemDispcription}>
-                  <div>タグ</div>
-                  <div>{carouselItem.updatedAt}</div>
+                <div className={style.CalouselItemBody}>
+                  <h2 className={style.CalouselItemTitle}>
+                    {carouselItem.title}
+                  </h2>
+                  <div className={style.CalouselItemDispcription}>
+                    <div>タグ</div>
+                    <div>{carouselItem.updatedAt}</div>
+                  </div>
                 </div>
               </a>
               <hr />

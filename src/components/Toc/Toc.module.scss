@@ -1,0 +1,29 @@
+@import "../../../styles/variables.scss";
+
+.container {
+  width: 80%;
+  margin: 0.8rem auto;
+  padding: 0.5rem 0;
+  background-color: rgb(237, 237, 237);
+  border-top: double 5px #cccccc;
+  border-bottom: double 5px #cccccc;
+
+  h4 {
+    text-align: center;
+    &::before {
+      @include fa_icon("list-ul");
+      margin-right: 6px;
+    }
+  }
+
+  .toclists {
+    list-style: none;
+
+    .list.h2 {
+      margin-left: 1em;
+    }
+    .list.h3 {
+      margin-left: 2em;
+    }
+  }
+}

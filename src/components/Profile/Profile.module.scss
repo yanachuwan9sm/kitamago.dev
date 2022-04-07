@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .profileimage {
+    margin: 1rem auto 0 auto;
+
+    border-radius: 50px;
+  }
+
+  .profilename {
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 0.5rem 0 0.1rem 0;
+  }
+
+  .profilejob {
+    color: rgb(129, 129, 129);
+    margin-bottom: 1.2rem;
+  }
+
+  .profiletext {
+  }
+}

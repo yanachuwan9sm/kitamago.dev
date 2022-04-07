@@ -6,15 +6,15 @@ import style from "../Header/Header.module.scss";
 const menuList = [
   {
     title: "blog",
-    href: "",
+    href: "/",
   },
   {
     title: "about",
-    href: "",
+    href: "/",
   },
   {
     title: "contact",
-    href: "",
+    href: "/",
   },
 ];
 

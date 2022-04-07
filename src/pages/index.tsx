@@ -50,8 +50,10 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }: Props) => {
   return (
     <>
-      <AnimationBg />
-      <Carousel carouselItems={carouselArray} />
+      <div className={style.wrapper}>
+        <AnimationBg />
+        <Carousel carouselItems={carouselArray} />
+      </div>
       {/* 記事一覧表示 */}
       <div className={style.container}>
         <ul>
