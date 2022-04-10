@@ -6,7 +6,7 @@ import Link from "next/link";
 import style from "../pages/index.module.scss";
 
 import { client } from "../libs/client";
-import { Blog } from "../types/blog";
+import { Blog, Tag } from "../types/blog";
 import { Carousel } from "../components/Carousel/Carousel";
 import AnimationBg from "../components/AnimationBg/AnimationBg";
 
@@ -21,6 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
     image: blog.image.url,
     alt: blog.title,
     updatedAt: blog.updatedAt.slice(0, 10),
+    tags: blog.tags,
   }));
 
   return {
@@ -42,6 +43,7 @@ type carouselItems = {
   image: string;
   alt: string;
   updatedAt: string;
+  tags: Tag[];
 };
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({

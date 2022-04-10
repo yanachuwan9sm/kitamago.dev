@@ -9,7 +9,8 @@ import { IconContext } from "react-icons";
 import style from "../Carousel/Carousel.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Blog } from "../../types/blog";
+import { Blog, Tag } from "../../types/blog";
+import Link from "next/link";
 
 type carouselProps = {
   carouselItems: {
@@ -18,6 +19,7 @@ type carouselProps = {
     image: string;
     alt: string;
     updatedAt: string;
+    tags: Tag[];
   }[];
 };
 
@@ -61,20 +63,13 @@ export const Carousel = (props: carouselProps) => {
   const sliderSettings = {
     arrows: false,
     centerMode: true,
+    centerPadding: "0px",
     dots: true,
     infinite: true,
     speed: 500,
+
     slidesToShow: 1,
     slidesToScroll: 1,
-    // responsive: [
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       adaptiveHeight: true,
-    //       adaptiveWidth: true,
-    //     },
-    //   },
-    // ],
 
     appendDots: (dots: any) => (
       <>
@@ -101,16 +96,29 @@ export const Carousel = (props: carouselProps) => {
                   className={style.carouselItemImage}
                   src={carouselItem.image}
                   alt={carouselItem.title}
-                  width="580px"
-                  height="360px"
+                  width="680px"
+                  height="480px"
                 />
                 <div className={style.CalouselItemBody}>
                   <h2 className={style.CalouselItemTitle}>
                     {carouselItem.title}
                   </h2>
                   <div className={style.CalouselItemDispcription}>
-                    <div>タグ</div>
-                    <div>{carouselItem.updatedAt}</div>
+                    <ul>
+                      {carouselItem.tags.map((tag) => (
+                        <li key={tag.id}>
+                          <Link
+                            href="/category/[id]"
+                            as={`/category/${tag.tag}`}
+                          >
+                            <a> {tag.tag}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className={style.CalouselDate}>
+                      {carouselItem.updatedAt}
+                    </div>
                   </div>
                 </div>
               </a>

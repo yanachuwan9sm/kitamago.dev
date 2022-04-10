@@ -31,7 +31,7 @@ import style from "./SideBar.module.scss";
 const SideBar = () => {
   return (
     <>
-      <div className={style.sidebar}>
+      <aside className={style.sidebar}>
         <div className={style.s_container}>
           <div className={style.s_header}>プロフィール</div>
           <div className={style.s_content}>
@@ -59,10 +59,10 @@ const SideBar = () => {
           </div>
         </div>
         <div className={style.s_container}>
-          <div className={style.s_header}>profile</div>
+          <div className={style.s_header}>新着記事</div>
           <div className={style.s_content}>kitamago</div>
         </div>
-      </div>
+      </aside>
     </>
   );
 };

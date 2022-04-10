@@ -15,8 +15,8 @@
 
   .cityIconStyle {
     position: absolute;
-    top: 55%;
-    right: 34%;
+    top: 90%;
+    right: 24%;
     width: 6px;
     height: 6px;
     @include mq(md) {
@@ -27,8 +27,8 @@
 
   .ReadingPeopleIconStyle {
     position: absolute;
-    top: 0%;
-    left: 8%;
+    top: -3%;
+    left: 5%;
     width: 6px;
     height: 6px;
     @include mq(md) {

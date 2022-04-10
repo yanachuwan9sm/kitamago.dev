@@ -3,10 +3,12 @@
 .container {
   display: flex;
   justify-content: center;
+  margin-top: 1.7rem;
 }
 
 .wrapper {
-  width: 660px;
+  width: 560px;
+
   @include mq(md) {
     width: 100%;
   }
@@ -28,6 +30,9 @@
   background: none;
   border: none;
   cursor: pointer;
+  @include mq(md) {
+    display: none;
+  }
 }
 
 .carouselControler {
@@ -91,25 +96,26 @@
 }
 
 .CalouselItem {
-  padding: 0 3.15rem;
+  width: 100%;
   display: flex;
   justify-content: center;
-  @include mq(md) {
-    padding: 0 3.15rem;
+
+  hr {
+    background-color: #b6b6b6;
   }
 
   a {
-    .CalouselItemBody {
-      //background-color: rgb(255, 255, 255, 0.8);
-    }
+    // .CalouselItemBody {
+    //   //background-color: rgb(255, 255, 255, 0.8);
+    // }
     .carouselItemImage {
-      //margin: 0 auto;
       overflow: hidden;
       transition: 0.5s all;
     }
     .CalouselItemTitle {
-      //color: rgba(0, 0, 0, 0.8);
+      font-size: large;
       padding: 0 2px;
+      margin: 10px 0;
       transition: 0.5s all;
       @include mq(md) {
         font-size: small;
@@ -119,12 +125,39 @@
     .CalouselItemDispcription {
       display: flex;
       justify-content: space-between;
+      font-family: "Ubuntu", sans-serif;
+
+      ul {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        &::before {
+          @include fa_icon("tag");
+          margin-right: 3px;
+        }
+        li {
+          padding: 0 0.2rem;
+          &:hover {
+            color: #8a8b8b;
+          }
+        }
+      }
+      .CalouselDate {
+        //display: flex;
+        align-items: center;
+        &::before {
+          @include fa_icon("clock");
+          margin-right: 6px;
+        }
+      }
     }
     &:hover {
       .carouselItemImage {
         transform: scale(1.2, 1.2);
         transition: 0.5s all;
-        opacity: 0.7;
+        opacity: 0.9;
       }
       .CalouselItemTitle {
         transition: 0.5s all;

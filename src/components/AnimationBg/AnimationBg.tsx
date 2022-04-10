@@ -8,7 +8,7 @@ const AnimationBg: React.FC = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <div className={style.cityIconStyle}>
-            <img src="/image/City.png" width="180" height="180" alt="" />
+            <img src="/image/City.png" width="200" height="200" alt="" />
           </div>
           <div className={style.ReadingPeopleIconStyle}>
             <img src="/image/education.png" width="180" height="180" alt="" />
