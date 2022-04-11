@@ -13,7 +13,7 @@ import style from "./blog.module.scss";
 import "highlight.js/styles/hybrid.css";
 
 import { client } from "../../libs/client";
-import { Blog } from "../../types/blog";
+import { ArticleLinkContent, Blog } from "../../types/blog";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import SideBar from "../../components/SideBar/SideBar";
 import Toc from "../../components/Toc/Toc";
@@ -34,9 +34,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // microCMSへAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   const id = ctx.params?.id as string;
-  const blog = await client.get({ endpoint: "blog", contentId: id });
+  const blog: Blog = await client.get({ endpoint: "blog", contentId: id });
 
-  const $ = cheerio.load(blog.body);
+  // 繰り返しフィールドに応じて記事本文の情報のみを抽出
+  const BodyArray = Array(blog.contents?.length);
+
+  blog.contents?.forEach((content, idx) => {
+    if (content.fieldId === "richEditor") {
+      BodyArray.push(content.body);
+    }
+  });
+  // 取得した記事本文の文字列配列を文字列に変換
+  const body = BodyArray.join("");
+
+  const $ = cheerio.load(body);
   $("pre code").each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);

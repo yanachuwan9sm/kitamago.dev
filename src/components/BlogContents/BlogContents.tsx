@@ -6,6 +6,7 @@ import style from "./BlogContents.module.scss";
 
 import Toc from "../Toc/Toc";
 import { Blog } from "../../types/blog";
+import ArticleLink from "../ArticleLink/ArticleLink";
 
 interface Props {
   blog: Blog;
@@ -37,16 +38,35 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
         <Image src={blog.image.url} width="500" height="380" alt="blog-image" />
 
         {/* 目次 */}
-        <Toc htmlString={blog.body} />
+        <Toc htmlString={highlightedBody} />
 
         {/* 記事内容 */}
-        <div className={style.body}>
+
+        {/* <div className={style.body}>
           <div
             dangerouslySetInnerHTML={{
               __html: `${highlightedBody}`,
             }}
           />
-        </div>
+        </div> */}
+
+        {blog.contents?.map((content, i) =>
+          content.fieldId === "richEditor" ? (
+            <>
+              <div className={style.body}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `${highlightedBody}`,
+                  }}
+                />
+              </div>
+            </>
+          ) : content.fieldId === "articleLink" ? (
+            <ArticleLink key={i} {...content} />
+          ) : (
+            ""
+          )
+        )}
       </div>
     </>
   );
