@@ -7,11 +7,16 @@ import style from "./BlogContents.module.scss";
 import Toc from "../Toc/Toc";
 import { Blog } from "../../types/blog";
 import ArticleLink from "../ArticleLink/ArticleLink";
+import { highlightCode } from "../../utils/highlightCode";
 
 interface Props {
   blog: Blog;
   highlightedBody: string;
 }
+
+export const AdaptListener = (str: string) => {
+  return str;
+};
 
 const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
   return (
@@ -41,22 +46,13 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
         <Toc htmlString={highlightedBody} />
 
         {/* 記事内容 */}
-
-        {/* <div className={style.body}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `${highlightedBody}`,
-            }}
-          />
-        </div> */}
-
         {blog.contents?.map((content, i) =>
           content.fieldId === "richEditor" ? (
             <>
               <div className={style.body}>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `${highlightedBody}`,
+                    __html: `${highlightCode(content.body)}`,
                   }}
                 />
               </div>

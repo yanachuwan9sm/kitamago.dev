@@ -1,4 +1,4 @@
-import { MicroCMSListContent } from "microcms-js-sdk";
+// import { MicroCMSListContent } from "microcms-js-sdk";
 
 // 記事に関する型定義
 export type Blog = {
