@@ -4,21 +4,18 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from "next";
-import Image from "next/image";
+
+import { client } from "../../libs/client";
+import { Blog, Tag } from "../../types/blog";
+
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import SideBar from "../../components/SideBar/SideBar";
+import BlogContents from "../../components/BlogContents/BlogContents";
+import BlogContentsLayout from "../../components/BlogContentsLayout/BlogContentsLayout";
 
 import cheerio from "cheerio";
 import hljs from "highlight.js";
-
-import style from "./blog.module.scss";
 import "highlight.js/styles/hybrid.css";
-
-import { client } from "../../libs/client";
-import { ArticleLinkContent, Blog } from "../../types/blog";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import SideBar from "../../components/SideBar/SideBar";
-import Toc from "../../components/Toc/Toc";
-import Link from "next/link";
-import BlogContents from "../../components/BlogContents/BlogContents";
 
 // 静的生成のためのパスを指定
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -35,6 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   const id = ctx.params?.id as string;
   const blog: Blog = await client.get({ endpoint: "blog", contentId: id });
+  const tags = await client.get({ endpoint: "tag" });
 
   // 繰り返しフィールドに応じて記事本文の情報のみを抽出
   const BodyArray = Array(blog.contents?.length);
@@ -58,6 +56,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     props: {
       blog,
       highlightedBody: $.html(),
+      tags: tags.contents,
     },
   };
 };
@@ -65,16 +64,17 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 type Props = {
   blog: Blog;
   highlightedBody: string;
+  tags: Tag[];
 };
 
 const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   blog,
   highlightedBody,
+  tags,
 }: Props) => {
   return (
     <>
       <main>
-        {/* パンくずリスト */}
         <Breadcrumb
           blogPageInfo={{
             categoryId: blog.tags[0].id,
@@ -83,11 +83,11 @@ const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           }}
           pageTitle={blog.title}
         />
-        <div className={style.container}>
-          <BlogContents blog={blog} highlightedBody={highlightedBody} />
 
-          <SideBar />
-        </div>
+        <BlogContentsLayout>
+          <BlogContents blog={blog} highlightedBody={highlightedBody} />
+          <SideBar tags={tags} />
+        </BlogContentsLayout>
       </main>
     </>
   );

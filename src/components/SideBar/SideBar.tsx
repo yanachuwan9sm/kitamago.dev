@@ -7,28 +7,11 @@ import { Tag } from "../../types/blog";
 import Profile from "../Profile/Profile";
 import style from "./SideBar.module.scss";
 
-//
-// getStaticPropsページからのみエクスポートできます。
-// ページ以外のファイルからエクスポートすることはできません。
-// この制限の理由の1つは、ページがレンダリングされる前に
-// Reactが必要なすべてのデータを持っている必要があることです。
-//
-// interface Props {
-//   tags: Tag[];
-// }
+interface Props {
+  tags: Tag[];
+}
 
-// export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-//   const data = await client.get({ endpoint: "tag" });
-//   const tags: Tag[] = data.contents;
-
-//   return {
-//     props: {
-//       tags: tags,
-//     },
-//   };
-// };
-
-const SideBar = () => {
+const SideBar: React.VFC<Props> = ({ tags }) => {
   return (
     <>
       <aside className={style.sidebar}>
@@ -41,7 +24,7 @@ const SideBar = () => {
         <div className={style.s_container}>
           <div className={style.s_header}>タグ</div>
           <div className={style.s_content}>
-            {/* {tags && (
+            {tags && (
               <ul>
                 {tags.map((tag) => (
                   <>
@@ -55,7 +38,7 @@ const SideBar = () => {
                   </>
                 ))}
               </ul>
-            )} */}
+            )}
           </div>
         </div>
         <div className={style.s_container}>

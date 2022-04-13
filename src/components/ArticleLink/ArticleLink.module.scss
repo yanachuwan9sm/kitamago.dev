@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  .linkicon {
+    // right: auto;
+    // bottom: auto;
+    padding: 0 0.75em;
+    color: #fff;
+    background: #151515;
+  }
+  .inner {
+    display: flex;
+    padding: 1.5rem 1rem;
+    border: 1px solid #151515;
+
+    .linkimage {
+      padding: 0.2rem 0.5rem;
+    }
+    .linkbody {
+      padding: 0.2rem 0.5rem;
+    }
+    &:hover {
+      transition: box-shadow 0.25s;
+    }
+  }
+}

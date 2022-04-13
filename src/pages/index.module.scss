@@ -1,18 +1,15 @@
 @import "../../styles/variables.scss";
 
-.container {
-  display: flex;
-  padding: 13rem 0;
-}
-
 .wrapper {
   width: 800px;
   height: 400px;
 
   margin: 2rem auto;
+  margin-bottom: 13rem;
   position: relative;
 
   @include mq(md) {
     width: 100%;
+    margin-bottom: 6rem;
   }
 }

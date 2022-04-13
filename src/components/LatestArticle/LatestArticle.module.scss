@@ -1,0 +1,51 @@
+@import "../../../styles/variables.scss";
+
+.content {
+  width: 78%;
+  padding: 0 1rem;
+  @include mq(lg) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 0.2rem;
+  }
+
+  h1 {
+    border-bottom: 2px solid #151515;
+    &::before {
+      @include fa_icon("tag");
+      margin-right: 0.8rem;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    list-style: none;
+    padding-left: 0px;
+    li {
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 0 10px 10px 0;
+      width: calc(50% - 10px);
+      @include mq(md) {
+        width: calc(100% - 10px);
+      }
+
+      a {
+        h2 {
+          font-size: large;
+        }
+        p {
+          &::before {
+            @include fa_icon("clock");
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+}

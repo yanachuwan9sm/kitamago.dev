@@ -9,11 +9,18 @@ import { client } from "../libs/client";
 import { Blog, Tag } from "../types/blog";
 import { Carousel } from "../components/Carousel/Carousel";
 import AnimationBg from "../components/AnimationBg/AnimationBg";
+import BlogContentsLayout from "../components/BlogContentsLayout/BlogContentsLayout";
+import LatestArticle from "../components/LatestArticle/LatestArticle";
+import SideBar from "../components/SideBar/SideBar";
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.get({ endpoint: "blog" });
   const blog: Blog[] = data.contents;
+  const tags = await client.get({
+    endpoint: "tag",
+    queries: { orders: "-publishedAt" },
+  });
 
   const carouselArray: carouselItems[] = blog.map((blog) => ({
     url: `/blog/${blog.id}`,
@@ -28,6 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       blogs: blog,
       carouselArray: carouselArray,
+      tags: tags.contents,
     },
   };
 };
@@ -35,6 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 type Props = {
   blogs: Blog[];
   carouselArray: carouselItems[];
+  tags: Tag[];
 };
 
 type carouselItems = {
@@ -49,6 +58,7 @@ type carouselItems = {
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   blogs,
   carouselArray,
+  tags,
 }: Props) => {
   return (
     <>
@@ -56,18 +66,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <AnimationBg />
         <Carousel carouselItems={carouselArray} />
       </div>
-      {/* 記事一覧表示 */}
-      <div className={style.container}>
-        <ul>
-          {blogs.map((blog: any) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      <BlogContentsLayout>
+        <LatestArticle blogs={blogs} />
+        <SideBar tags={tags} />
+      </BlogContentsLayout>
     </>
   );
 };

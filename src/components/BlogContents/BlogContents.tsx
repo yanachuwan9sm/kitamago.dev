@@ -14,10 +14,6 @@ interface Props {
   highlightedBody: string;
 }
 
-export const AdaptListener = (str: string) => {
-  return str;
-};
-
 const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
   return (
     <>

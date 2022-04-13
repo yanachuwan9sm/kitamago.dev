@@ -1,16 +1,5 @@
 @import "../../../styles/variables.scss";
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  @include mq(lg) {
-    justify-content: center;
-    flex-direction: column;
-  }
-}
-
 .content {
   width: 78%;
   padding: 0 1rem;
@@ -32,9 +21,10 @@
   ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     list-style: none;
+    padding-left: 0px;
 
     li {
       box-sizing: border-box;
