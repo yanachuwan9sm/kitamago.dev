@@ -16,6 +16,8 @@ import BlogContentsLayout from "../../components/BlogContentsLayout/BlogContents
 import cheerio from "cheerio";
 import hljs from "highlight.js";
 import "highlight.js/styles/hybrid.css";
+import Seo from "../../components/Seo/Seo";
+import { useRouter } from "next/router";
 
 // 静的生成のためのパスを指定
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -72,8 +74,14 @@ const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   highlightedBody,
   tags,
 }: Props) => {
+  const router = useRouter();
   return (
     <>
+      <Seo
+        pageTitle={blog.title}
+        pagePath={router.pathname}
+        pageImg={blog.image.url}
+      />
       <main>
         <Breadcrumb
           blogPageInfo={{

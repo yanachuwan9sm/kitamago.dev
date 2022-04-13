@@ -14,6 +14,7 @@ import BlogContentsLayout from "../../components/BlogContentsLayout/BlogContents
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import CategoryArticleList from "../../components/CategoryArticleList/CategoryArticleList";
 import SideBar from "../../components/SideBar/SideBar";
+import Seo from "../../components/Seo/Seo";
 
 // 取得したパスより一致するカテゴリーのid値を取得
 const filterTagId = (tags: Tag[], targetQuery: string) => {
@@ -64,22 +65,25 @@ const CategoryId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const router = useRouter();
   const { id } = router.query;
   return (
-    <main>
-      {/* パンくずリスト */}
-      <Breadcrumb
-        blogPageInfo={{
-          categoryId: "",
-          categoryName: "",
-          blogTitle: "",
-        }}
-        pageTitle={id as string}
-      />
+    <>
+      <Seo pageTitle={`${id} | kitamago-log`} pagePath={router.pathname} />
+      <main>
+        {/* パンくずリスト */}
+        <Breadcrumb
+          blogPageInfo={{
+            categoryId: "",
+            categoryName: "",
+            blogTitle: "",
+          }}
+          pageTitle={id as string}
+        />
 
-      <BlogContentsLayout>
-        <CategoryArticleList id={id as string} blogs={blogs} />
-        <SideBar tags={tags} />
-      </BlogContentsLayout>
-    </main>
+        <BlogContentsLayout>
+          <CategoryArticleList id={id as string} blogs={blogs} />
+          <SideBar tags={tags} />
+        </BlogContentsLayout>
+      </main>
+    </>
   );
 };
 

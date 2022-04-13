@@ -12,6 +12,7 @@ import AnimationBg from "../components/AnimationBg/AnimationBg";
 import BlogContentsLayout from "../components/BlogContentsLayout/BlogContentsLayout";
 import LatestArticle from "../components/LatestArticle/LatestArticle";
 import SideBar from "../components/SideBar/SideBar";
+import Seo from "../components/Seo/Seo";
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps = async () => {
@@ -62,6 +63,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }: Props) => {
   return (
     <>
+      <Seo />
       <div className={style.wrapper}>
         <AnimationBg />
         <Carousel carouselItems={carouselArray} />
