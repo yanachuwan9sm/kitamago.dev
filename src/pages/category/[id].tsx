@@ -64,7 +64,9 @@ const CategoryId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }: Props) => {
   const router = useRouter();
   const { id } = router.query;
-  const pagePath = location.href;
+
+  const pagePath = process.env.NEXT_PUBLIC_SERVER_DOMAIN + router.asPath;
+
   return (
     <>
       <Seo pageTitle={id as string} pagePath={pagePath} />
