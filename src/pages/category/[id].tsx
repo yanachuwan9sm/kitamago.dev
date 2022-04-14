@@ -64,9 +64,10 @@ const CategoryId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }: Props) => {
   const router = useRouter();
   const { id } = router.query;
+  const pagePath = location.href;
   return (
     <>
-      <Seo pageTitle={`${id} | kitamago-log`} pagePath={router.pathname} />
+      <Seo pageTitle={id as string} pagePath={pagePath} />
       <main>
         {/* パンくずリスト */}
         <Breadcrumb

@@ -75,11 +75,12 @@ const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   tags,
 }: Props) => {
   const router = useRouter();
+  const pagePath = process.env.NEXT_PUBLIC_SERVER_DOMAIN + router.asPath;
   return (
     <>
       <Seo
         pageTitle={blog.title}
-        pagePath={router.pathname}
+        pagePath={pagePath}
         pageImg={blog.image.url}
       />
       <main>
