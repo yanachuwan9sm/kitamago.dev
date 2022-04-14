@@ -15,7 +15,7 @@ import SideBar from "../components/SideBar/SideBar";
 import Seo from "../components/Seo/Seo";
 
 // microCMSに対してAPIリクエスト
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const data = await client.get({ endpoint: "blog" });
   const blog: Blog[] = data.contents;
   const tags = await client.get({
