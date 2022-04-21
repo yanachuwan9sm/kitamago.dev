@@ -1,6 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 import { client } from "../../libs/client";
 import { Tag } from "../../types/blog";
@@ -12,9 +13,38 @@ interface Props {
 }
 
 const SideBar: React.VFC<Props> = ({ tags }) => {
+  const [inputData, setInputData] = useState("");
+  const router = useRouter();
+
   return (
     <>
       <aside className={style.sidebar}>
+        <div className={style.s_container}>
+          <div className={style.s_content}>
+            <div className={style.search_container}>
+              <input
+                className={style.search_input}
+                type="text"
+                value={inputData}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setInputData(e.target.value)
+                }
+                placeholder="検索"
+                aria-label="検索ワード"
+              />
+              <button
+                type="button"
+                className={style.search_button}
+                onClick={() =>
+                  router.push({
+                    pathname: "/search",
+                    query: { q: inputData },
+                  })
+                }
+              ></button>
+            </div>
+          </div>
+        </div>
         <div className={style.s_container}>
           <div className={style.s_header}>プロフィール</div>
           <div className={style.s_content}>

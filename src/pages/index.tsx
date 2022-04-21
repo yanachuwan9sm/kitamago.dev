@@ -65,7 +65,8 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <>
       <Seo />
       <div className={style.wrapper}>
-        <AnimationBg />
+        {/* <AnimationBg /> */}
+        <div className={style.pickuplogo}>PICKUP ARTICLE</div>
         <Carousel carouselItems={carouselArray} />
       </div>
 

@@ -55,6 +55,8 @@ $red: (
     content: "\f02b";
   } @else if $type == "list-ul" {
     content: "\f0ca";
+  } @else if $type == "search" {
+    content: "\f002";
   }
 
   font-weight: $font_weight;

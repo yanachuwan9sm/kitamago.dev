@@ -1,0 +1,10 @@
+@import "../../../styles/variables.scss";
+
+.container {
+  width: 78%;
+  padding: 0 1rem;
+  @include mq(lg) {
+    width: 100%;
+    padding: 0 0.2rem;
+  }
+}

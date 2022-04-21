@@ -33,6 +33,7 @@ const Seo: VFC<MetaType> = ({
       <title>{title}</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="description" content={description} />
+      {/* OGP設定 */}
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
@@ -41,14 +42,27 @@ const Seo: VFC<MetaType> = ({
       <meta property="og:image" content={imgUrl} />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
+      {/* Twitterカード設定 */}
       <meta name="twitter:image" content={imgUrl} />
+      <meta name="twitter:card" content="summary_large_image" />
+
       <link rel="icon" href="/favicon.ico" />
+      {/* Font Awesome */}
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
       ></link>
+      {/* Google Fonts */}
       <link
         href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+        rel="stylesheet"
+      ></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu:wght@500&display=swap"
+        rel="stylesheet"
+      ></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Secular+One&family=Ubuntu:wght@500&display=swap"
         rel="stylesheet"
       ></link>
     </Head>

@@ -27,6 +27,32 @@
     }
     .s_content {
       padding: 1rem 0;
+
+      .search_container {
+        position: relative;
+        .search_input {
+          width: 100%;
+          padding: 4px 44px 4px 8px;
+          line-height: 2;
+          border: 1px solid #868686;
+
+          background-color: #fff;
+        }
+        .search_button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 40px;
+          height: 100%;
+          color: #fff;
+          background-color: #494949;
+          border: none;
+          overflow: hidden;
+          &::before {
+            @include fa_icon("search");
+          }
+        }
+      }
     }
   }
 }

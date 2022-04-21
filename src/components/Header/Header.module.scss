@@ -10,9 +10,9 @@
   flex-direction: row;
   justify-content: space-between;
   z-index: 30;
-  @include mq(md) {
-    justify-content: center;
-  }
+  // @include mq(md) {
+  //   justify-content: center;
+  // }
 }
 
 .container_defalut {
@@ -33,6 +33,18 @@
     font-size: 1.7rem;
 
     text-align: center;
+  }
+}
+
+.iconbutton,
+.mailbutton {
+  display: none;
+  background: none;
+  border: none;
+  padding-top: 8px;
+  cursor: pointer;
+  @include mq(md) {
+    display: flex;
   }
 }
 
