@@ -45,7 +45,11 @@ const Seo: VFC<MetaType> = ({
       {/* Twitterカード設定 */}
       <meta name="twitter:image" content={imgUrl} />
       <meta name="twitter:card" content="summary_large_image" />
-
+      {/* Google Search Console */}
+      <meta
+        name="google-site-verification"
+        content="55w4tS9g30GLrsSYulK6rm-SKy61iRBFhGhOyfG0lEE"
+      />
       <link rel="icon" href="/favicon.ico" />
       {/* Font Awesome */}
       <link
