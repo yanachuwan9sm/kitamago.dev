@@ -1,5 +1,8 @@
 import React from "react";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+
 import cheerio from "cheerio";
+
 import style from "./Toc.module.scss";
 
 export type TocTypes = {
@@ -45,7 +48,8 @@ const Toc: React.VFC<Props> = ({ htmlString }) => {
                     }
                     key={toc.id}
                   >
-                    <a href={"#" + toc.id}>{toc.text}</a>
+                    {/* <a href={"#" + toc.id}>{toc.text}</a> */}
+                    <AnchorLink href={"#" + toc.id}>{toc.text}</AnchorLink>
                   </li>
                 );
               })}
