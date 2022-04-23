@@ -18,12 +18,20 @@
 
   .toclists {
     list-style: none;
-
-    .list.h2 {
-      margin-left: 1em;
+    li {
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #dadada;
+      width: 80%;
+      &::before {
+        content: "-";
+        margin-right: 0.4rem;
+      }
     }
-    .list.h3 {
-      margin-left: 2em;
+    .h2 {
+      margin-left: 0.3em;
+    }
+    .h3 {
+      margin-left: 0.8em;
     }
   }
 }

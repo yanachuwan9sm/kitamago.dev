@@ -33,7 +33,18 @@ const Toc: React.VFC<Props> = ({ htmlString }) => {
             <ul className={style.toclists}>
               {toc.map((toc, index) => {
                 return (
-                  <li className={"list " + toc.name} key={toc.id}>
+                  <li
+                    className={
+                      toc.name === "h2"
+                        ? style.h2
+                        : toc.name === "h3"
+                        ? style.h3
+                        : toc.name === "h4"
+                        ? style.h4
+                        : style.none
+                    }
+                    key={toc.id}
+                  >
                     <a href={"#" + toc.id}>{toc.text}</a>
                   </li>
                 );
