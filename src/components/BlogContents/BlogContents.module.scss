@@ -74,7 +74,9 @@
       padding: 0.8rem 0.5rem;
       // h2タグと同一階層で後続に登場する全ての pタグ に対してスタイルを適用
       ~ p,
-      ~ pre {
+      ~ pre,
+      ~ table,
+      ~ image {
         padding-left: 1rem;
       }
     }
@@ -94,7 +96,9 @@
       }
       // h3段落での pタグ の開始行を調整
       ~ p,
-      ~ pre {
+      ~ pre,
+      ~ table,
+      ~ image {
         padding-left: 1.5rem;
       }
     }
@@ -120,6 +124,33 @@
       color: #989898;
       border-left: solid 7px #cce4ff;
       background-color: #f1f1f1;
+    }
+  }
+
+  .table {
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 95%;
+      margin: 0 auto;
+      text-align: center;
+      tr {
+        th {
+          padding: 2px;
+          background: #778ca3;
+          border-right: solid 1px #778ca3;
+          color: #ffffff;
+          :last-child {
+            border-right: none;
+          }
+        }
+        td {
+          padding: 2px;
+          :last-child {
+            border-right: none;
+          }
+        }
+      }
     }
   }
 }

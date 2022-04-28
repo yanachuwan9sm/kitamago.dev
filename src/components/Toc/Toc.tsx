@@ -4,6 +4,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import cheerio from "cheerio";
 
 import style from "./Toc.module.scss";
+import { data } from "cheerio/lib/api/attributes";
 
 export type TocTypes = {
   text: string;

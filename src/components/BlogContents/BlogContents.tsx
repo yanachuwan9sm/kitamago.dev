@@ -41,24 +41,45 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
         {/* 目次 */}
         <Toc htmlString={highlightedBody} />
 
-        {/* 記事内容 */}
-        {blog.contents?.map((content, i) =>
-          content.fieldId === "richEditor" ? (
-            <>
-              <div className={style.body}>
+        <div className={style.body}>
+          {/* 記事内容 */}
+          {blog.contents?.map((content, i) =>
+            content.fieldId === "richEditor" ? (
+              <>
+                {/* <div className={style.body}> */}
                 <div
                   dangerouslySetInnerHTML={{
                     __html: `${highlightCode(content.body)}`,
                   }}
                 />
-              </div>
-            </>
-          ) : content.fieldId === "articleLink" ? (
-            <ArticleLink key={i} {...content} />
-          ) : (
-            ""
-          )
-        )}
+                {/* </div> */}
+              </>
+            ) : content.fieldId === "articleLink" ? (
+              <ArticleLink key={i} {...content} />
+            ) : content.fieldId === "table" ? (
+              <>
+                <div className={style.table}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: content.html,
+                    }}
+                  />
+                </div>
+              </>
+            ) : content.fieldId === "article_image" ? (
+              <>
+                <Image
+                  src={content.articleimg.url}
+                  width={content.articleimg.width}
+                  height={content.articleimg.height}
+                  alt="blog-image"
+                />
+              </>
+            ) : (
+              ""
+            )
+          )}
+        </div>
       </div>
     </>
   );
