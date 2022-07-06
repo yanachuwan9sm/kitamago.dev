@@ -15,7 +15,7 @@ import BlogContentsLayout from "../../components/BlogContentsLayout/BlogContents
 
 import cheerio from "cheerio";
 import hljs from "highlight.js";
-import "highlight.js/styles/hybrid.css";
+import "highlight.js/styles/github-dark-dimmed.css";
 import Seo from "../../components/Seo/Seo";
 import { useRouter } from "next/router";
 

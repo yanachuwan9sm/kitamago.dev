@@ -1,28 +1,28 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
-import { IconContext } from "react-icons";
-import { useElementHeight } from "../../hooks/useElementHeight";
-import style from "../Header/Header.module.scss";
+import { IconContext } from 'react-icons';
+import { useElementHeight } from '../../hooks/useElementHeight';
+import style from '../Header/Header.module.scss';
 
-import { FaUserAlt } from "react-icons/fa";
-import { FaRegEnvelope } from "react-icons/fa";
-import { useRouter } from "next/router";
+import { FaUserAlt } from 'react-icons/fa';
+import { FaRegEnvelope } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 
 const menuList = [
   {
-    title: "about",
-    href: "/",
+    title: 'about',
+    href: '/',
   },
   {
-    title: "contact",
-    href: "/",
+    title: 'contact',
+    href: '/',
   },
 ];
 
 const ProfileIcon = (onClick: () => void) => {
   return (
-    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+    <IconContext.Provider value={{ color: '#151515', size: '35px' }}>
       <button className={style.prevArrow} onClick={onClick}>
         <FaUserAlt />
       </button>
@@ -32,7 +32,7 @@ const ProfileIcon = (onClick: () => void) => {
 
 const ContactIcon = (onClick: () => void) => {
   return (
-    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+    <IconContext.Provider value={{ color: '#151515', size: '35px' }}>
       <button className={style.prevArrow} onClick={onClick}>
         <FaRegEnvelope />
       </button>
@@ -51,9 +51,9 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -65,28 +65,36 @@ const Header = () => {
           scroll > height ? style.container_scroll : style.container_defalut
         }
       >
-        <IconContext.Provider value={{ color: "#151515", size: "25px" }}>
-          <button className={style.iconbutton} onClick={() => router.push("/")}>
-            <FaUserAlt />
-          </button>
-        </IconContext.Provider>
+        <div className={style.inner}>
+          <IconContext.Provider value={{ color: '#151515', size: '25px' }}>
+            <button
+              className={style.iconbutton}
+              onClick={() => router.push('/')}
+            >
+              <FaUserAlt />
+            </button>
+          </IconContext.Provider>
 
-        <h1 className={style.title}>kitamago-log</h1>
-        <ul className={style.list}>
-          {menuList.map((elm, idx) => (
-            <li key={idx}>
-              <Link href={elm.href}>
-                <a>{elm.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <h1 className={style.title}>kitamago-log</h1>
+          <ul className={style.list}>
+            {menuList.map((elm, idx) => (
+              <li key={idx}>
+                <Link href={elm.href}>
+                  <a>{elm.title}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <IconContext.Provider value={{ color: "#151515", size: "25px" }}>
-          <button className={style.mailbutton} onClick={() => router.push("/")}>
-            <FaRegEnvelope />
-          </button>
-        </IconContext.Provider>
+          <IconContext.Provider value={{ color: '#151515', size: '25px' }}>
+            <button
+              className={style.mailbutton}
+              onClick={() => router.push('/')}
+            >
+              <FaRegEnvelope />
+            </button>
+          </IconContext.Provider>
+        </div>
       </header>
     </>
   );

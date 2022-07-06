@@ -1,8 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Blog } from "../../types/blog";
-import style from "./LatestArticle.module.scss";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import { Blog } from '../../types/blog';
+import ArticleNav from '../ArticleNav/ArticleNav';
+import style from './LatestArticle.module.scss';
 
 interface Props {
   blogs: Blog[];
@@ -12,7 +13,8 @@ const LatestArticle: React.VFC<Props> = ({ blogs }) => {
   return (
     <>
       <div className={style.content}>
-        <h1>新着記事</h1>
+        <ArticleNav />
+
         {blogs && (
           <ul>
             {blogs.map((blog) => (

@@ -1,11 +1,15 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables.scss';
 
 .container {
   padding: 0 0rem;
 }
 
 .main {
+  width: 100%;
+  max-width: 1145px;
   min-height: 80vh;
+
+  margin: 0 auto;
   padding: 3rem 0;
   @include mq(md) {
     padding: 1.88rem 0;
