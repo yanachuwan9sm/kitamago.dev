@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import { GA_ID, pageview } from "../libs/gtag";
+import { GA_ID, pageview } from '../libs/gtag';
 
 // PV数をカウントするカスタムフック
 export default function usePageView() {
@@ -20,7 +20,7 @@ export default function usePageView() {
 
     // RouterのURL書き換えが完了した時に発火するrouteChangeCompleteイベントの
     // コールバックとしてpageview関数を設定
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => router.events.off("routeChangeComplete", handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 }

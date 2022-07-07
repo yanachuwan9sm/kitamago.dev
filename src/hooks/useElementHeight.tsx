@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 export const useElementHeight = () => {
   // memo :
@@ -11,7 +11,7 @@ export const useElementHeight = () => {
   // useRef をDOMにアクセスする手段に徹しさせる場合は Bad Method
   // => .current を更新するのはReactのランタイムだけであるべき
   const heightInspectedElm = useRef<HTMLElement>(null);
-  const [height, setHeight] = useState<Number>(0);
+  const [height, setHeight] = useState<number>(0);
 
   useEffect(() => {
     if (heightInspectedElm?.current) {

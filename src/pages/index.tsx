@@ -1,18 +1,13 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 
-import AnimationBg from '../components/AnimationBg/AnimationBg';
-import BlogContentsLayout from '../components/BlogContentsLayout/BlogContentsLayout';
-import { Carousel } from '../components/Carousel/Carousel';
-import LatestArticle from '../components/LatestArticle/LatestArticle';
-import Seo from '../components/Seo/Seo';
-import SideBar from '../components/SideBar/SideBar';
 import { client } from '../libs/client';
-import style from '../pages/index.module.scss';
 
 import type { Blog, Tag } from '../types/blog';
+
+import BlogContentsLayout from '@/src/components/BlogContentsLayout/BlogContentsLayout';
+import LatestArticle from '@/src/components/LatestArticle/LatestArticle';
+import Seo from '@/src/components/Seo/Seo';
+import SideBar from '@/src/components/SideBar/SideBar';
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async () => {
