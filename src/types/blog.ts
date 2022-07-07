@@ -1,58 +1,19 @@
-// import { MicroCMSListContent } from "microcms-js-sdk";
+import type { ArticleImgContent } from './ArticleImgContent';
+import type { ArticleLinkContent } from './ArticleLinkContent';
+import type { RichEditorContent } from './RichEditorContent';
+import type { TableContent } from './TableContent';
+import type { Tag } from './tag';
+import type { MicroCMSImage, MicroCMSListContent } from 'microcms-js-sdk';
 
 // 記事に関する型定義
 export type Blog = {
-  id: string;
-  contents: (RichEditorContent | ArticleLinkContent | TableContent | ArticleImgContent)[];
+  contents: contentBody[];
   title: string;
-  tags: Tag[];
-  image: {
-    url: string;
-    height: number;
-    width: number;
-  };
+  tags: (Tag & MicroCMSListContent)[];
+  image: MicroCMSImage;
   description: string;
   toc_visible: boolean;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
 };
 
-// カテゴリーに関する型定義
-export type Tag = {
-  id: string;
-  tag: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-};
-
-// カスタムフィールド リッチエディターに関する型定義
-export type RichEditorContent = {
-  fieldId: 'richEditor';
-  body: string;
-};
-
-// カスタムフィールド投稿済み記事ページのリンクに関する型定義
-export type ArticleLinkContent = {
-  fieldId: 'articleLink';
-  article: Blog;
-};
-
-// カスタムフィールド table に関する型定義
-export type TableContent = {
-  fieldId: 'table';
-  html: string;
-};
-
-// カスタムフィールド article_image に関する型定義
-export type ArticleImgContent = {
-  fieldId: 'article_image';
-  articleimg: {
-    url: string;
-    height: number;
-    width: number;
-  };
-};
+// 記事の内容部分(Body)に関する型定義
+export type contentBody = RichEditorContent | ArticleLinkContent | TableContent | ArticleImgContent;

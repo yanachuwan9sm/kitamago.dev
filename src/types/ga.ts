@@ -1,14 +1,13 @@
 // Google Analytics のイベントの型
-
 type ContactEvent = {
-  action: "submit_form";
-  category: "contact";
+  action: 'submit_form';
+  category: 'contact';
   label: string;
 };
 
 type ClickEvent = {
-  action: "click";
-  category: "other";
+  action: 'click';
+  category: 'other';
   label: string;
 };
 

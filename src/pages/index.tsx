@@ -18,14 +18,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     queries: { orders: '-publishedAt' },
   });
 
-  // const carouselArray: carouselItems[] = blog.map((blog) => ({
-  //   url: `/blog/${blog.id}`,
-  //   title: blog.title,
-  //   image: blog.image.url,
-  //   alt: blog.title,
-  //   updatedAt: blog.updatedAt.slice(0, 10),
-  //   tags: blog.tags,
-  // }));
+  const dataList = await client.getList({ endpoint: 'blog' });
+  console.log(dataList);
 
   return {
     props: {
@@ -39,15 +33,6 @@ type Props = {
   blogs: Blog[];
   tags: Tag[];
 };
-
-// type carouselItems = {
-//   url: string;
-//   title: string;
-//   image: string;
-//   alt: string;
-//   updatedAt: string;
-//   tags: Tag[];
-// };
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs, tags }: Props) => {
   return (
