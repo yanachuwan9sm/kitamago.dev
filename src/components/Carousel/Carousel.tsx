@@ -1,16 +1,20 @@
-import Image from "next/image";
-import React, { useRef, useState } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useRef, useState } from 'react';
 
-import Slider, { CustomArrowProps } from "react-slick";
+import { IconContext } from 'react-icons';
+import { FaChevronCircleLeft } from 'react-icons/fa';
+import { FaChevronCircleRight } from 'react-icons/fa';
+import Slider from 'react-slick';
 
-import { FaChevronCircleLeft } from "react-icons/fa";
-import { FaChevronCircleRight } from "react-icons/fa";
-import { IconContext } from "react-icons";
-import style from "../Carousel/Carousel.module.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { Blog, Tag } from "../../types/blog";
-import Link from "next/link";
+import { Blog } from '../../types/blog';
+import style from '../Carousel/Carousel.module.scss';
+
+import type { Tag } from '../../types/blog';
+import type { CustomArrowProps } from 'react-slick';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 type carouselProps = {
   carouselItems: {
@@ -25,7 +29,7 @@ type carouselProps = {
 
 const SlickArrowLeft = ({ onClick }: CustomArrowProps): JSX.Element => {
   return (
-    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+    <IconContext.Provider value={{ color: '#151515', size: '35px' }}>
       <button className={style.prevArrow} onClick={onClick}>
         <FaChevronCircleLeft />
       </button>
@@ -35,7 +39,7 @@ const SlickArrowLeft = ({ onClick }: CustomArrowProps): JSX.Element => {
 
 const SlickArrowRight = ({ onClick }: CustomArrowProps): JSX.Element => {
   return (
-    <IconContext.Provider value={{ color: "#151515", size: "35px" }}>
+    <IconContext.Provider value={{ color: '#151515', size: '35px' }}>
       <button className={style.nextArrow} onClick={onClick}>
         <FaChevronCircleRight />
       </button>
@@ -63,7 +67,7 @@ export const Carousel = (props: carouselProps) => {
   const sliderSettings = {
     arrows: false,
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: '0px',
     dots: true,
     infinite: true,
     speed: 500,
@@ -100,25 +104,18 @@ export const Carousel = (props: carouselProps) => {
                   height="480px"
                 />
                 <div className={style.CalouselItemBody}>
-                  <h2 className={style.CalouselItemTitle}>
-                    {carouselItem.title}
-                  </h2>
+                  <h2 className={style.CalouselItemTitle}>{carouselItem.title}</h2>
                   <div className={style.CalouselItemDispcription}>
                     <ul>
                       {carouselItem.tags.map((tag) => (
                         <li key={tag.id}>
-                          <Link
-                            href="/category/[id]"
-                            as={`/category/${tag.tag}`}
-                          >
+                          <Link href="/category/[id]" as={`/category/${tag.tag}`}>
                             <a> {tag.tag}</a>
                           </Link>
                         </li>
                       ))}
                     </ul>
-                    <div className={style.CalouselDate}>
-                      {carouselItem.updatedAt}
-                    </div>
+                    <div className={style.CalouselDate}>{carouselItem.updatedAt}</div>
                   </div>
                 </div>
               </a>

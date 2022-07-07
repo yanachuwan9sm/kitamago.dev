@@ -34,14 +34,30 @@ module.exports = {
     '@next/next/no-img-element': 0,
     // 未使用の変数がある場合エラーにする（デフォルトは warning）
     '@typescript-eslint/no-unused-vars': 'off',
-    // import の順番をルール化
-    // 'import/order': [
-    //   'error',
-    //   {
-    //     alphabetize: {
-    //       order: 'asc',
-    //     },
-    //   },
-    // ],
+    // import
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'parent', 'sibling', 'index', 'object', 'type'],
+        pathGroups: [
+          {
+            pattern: '{react,react-dom/**,react-router-dom,next,next/**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '@src/**',
+            group: 'parent',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: {
+          order: 'asc',
+        },
+        'newlines-between': 'always',
+      },
+    ],
+    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
   },
 };

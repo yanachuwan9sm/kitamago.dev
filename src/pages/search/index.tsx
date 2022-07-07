@@ -1,28 +1,24 @@
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 
-import { useRouter } from "next/router";
+import { MicroCMSListContent } from 'microcms-js-sdk';
+import useSWR from 'swr';
 
-import { client } from "../../libs/client";
-import { Blog, Tag } from "../../types/blog";
+import BlogContentsLayout from '../../components/BlogContentsLayout/BlogContentsLayout';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import CategoryArticleList from '../../components/CategoryArticleList/CategoryArticleList';
+import Seo from '../../components/Seo/Seo';
+import SideBar from '../../components/SideBar/SideBar';
+import { client } from '../../libs/client';
 
-import BlogContentsLayout from "../../components/BlogContentsLayout/BlogContentsLayout";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import CategoryArticleList from "../../components/CategoryArticleList/CategoryArticleList";
-import SideBar from "../../components/SideBar/SideBar";
-import Seo from "../../components/Seo/Seo";
-import useSWR from "swr";
-import { MicroCMSListContent, MicroCMSListResponse } from "microcms-js-sdk";
+import style from './index.module.scss';
 
-import style from "./index.module.scss";
+import type { Blog, Tag } from '../../types/blog';
+import type { MicroCMSListResponse } from 'microcms-js-sdk';
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const data = await client.get({ endpoint: "tag" });
+  const data = await client.get({ endpoint: 'tag' });
 
   return {
     props: {
@@ -40,9 +36,8 @@ const SearchArtile: NextPage<Props> = ({ tags }: Props) => {
 
   const pagePath = process.env.NEXT_PUBLIC_SERVER_DOMAIN + router.asPath;
 
-  const { data, error } = useSWR<MicroCMSListResponse<Blog>>(
-    `/api/search?q=${router.query.q}`,
-    (url) => fetch(url).then((res) => res.json())
+  const { data, error } = useSWR<MicroCMSListResponse<Blog>>(`/api/search?q=${router.query.q}`, (url) =>
+    fetch(url).then((res) => res.json())
   );
   console.log(data);
 
@@ -58,9 +53,9 @@ const SearchArtile: NextPage<Props> = ({ tags }: Props) => {
         {/* パンくずリスト */}
         <Breadcrumb
           blogPageInfo={{
-            categoryId: "",
-            categoryName: "",
-            blogTitle: "",
+            categoryId: '',
+            categoryName: '',
+            blogTitle: '',
           }}
           pageTitle={`検索ワード [ ${router.query.q} ]`}
         />
@@ -70,10 +65,7 @@ const SearchArtile: NextPage<Props> = ({ tags }: Props) => {
           ) : data.contents.length === 0 ? (
             <div className={style.container}>記事がありません</div>
           ) : (
-            <CategoryArticleList
-              id={router.query.q as string}
-              blogs={data.contents}
-            />
+            <CategoryArticleList id={router.query.q as string} blogs={data.contents} />
           )}
           <SideBar tags={tags} />
         </BlogContentsLayout>

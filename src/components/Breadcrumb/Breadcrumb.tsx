@@ -1,8 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import style from "../Breadcrumb/Breadcrumb.module.scss";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import { FaHome } from "react-icons/fa";
+import { FaHome } from 'react-icons/fa';
+
+import style from '../Breadcrumb/Breadcrumb.module.scss';
 
 interface Props {
   blogPageInfo: {
@@ -38,10 +39,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle }) => {
             <>
               {/* カテゴリー */}
               <li className={style.crumbitem}>
-                <Link
-                  href="/category/[id]"
-                  as={`/category/${blogPageInfo?.categoryName}`}
-                >
+                <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryName}`}>
                   <a>{blogPageInfo?.categoryName}</a>
                 </Link>
               </li>

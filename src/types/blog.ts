@@ -3,12 +3,7 @@
 // 記事に関する型定義
 export type Blog = {
   id: string;
-  contents: (
-    | RichEditorContent
-    | ArticleLinkContent
-    | TableContent
-    | ArticleImgContent
-  )[];
+  contents: (RichEditorContent | ArticleLinkContent | TableContent | ArticleImgContent)[];
   title: string;
   tags: Tag[];
   image: {
@@ -36,25 +31,25 @@ export type Tag = {
 
 // カスタムフィールド リッチエディターに関する型定義
 export type RichEditorContent = {
-  fieldId: "richEditor";
+  fieldId: 'richEditor';
   body: string;
 };
 
-// カスタムフィールド 投稿済み記事ページのリンク　に関する型定義
+// カスタムフィールド投稿済み記事ページのリンクに関する型定義
 export type ArticleLinkContent = {
-  fieldId: "articleLink";
+  fieldId: 'articleLink';
   article: Blog;
 };
 
 // カスタムフィールド table に関する型定義
 export type TableContent = {
-  fieldId: "table";
+  fieldId: 'table';
   html: string;
 };
 
 // カスタムフィールド article_image に関する型定義
 export type ArticleImgContent = {
-  fieldId: "article_image";
+  fieldId: 'article_image';
   articleimg: {
     url: string;
     height: number;

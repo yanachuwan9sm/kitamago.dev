@@ -1,13 +1,10 @@
-import Script from "next/script";
-import { GA_ID } from "../../libs/gtag";
+import Script from 'next/script';
+
+import { GA_ID } from '../../libs/gtag';
 
 const GoogleAnalytics = () => (
   <>
-    <Script
-      defer
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-      strategy="afterInteractive"
-    />
+    <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
     <Script id="ga" defer strategy="afterInteractive">
       {`
               window.dataLayer = window.dataLayer || [];

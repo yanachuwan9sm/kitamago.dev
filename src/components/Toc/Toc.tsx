@@ -1,10 +1,10 @@
-import React from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import React from 'react';
 
-import cheerio from "cheerio";
+import cheerio from 'cheerio';
+import { data } from 'cheerio/lib/api/attributes';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
-import style from "./Toc.module.scss";
-import { data } from "cheerio/lib/api/attributes";
+import style from './Toc.module.scss';
 
 export type TocTypes = {
   text: string;
@@ -20,7 +20,7 @@ const Toc: React.VFC<Props> = ({ htmlString }) => {
   // bodyデータを読込
   const $ = cheerio.load(htmlString);
   // h1,h2,h3タグを抽出し配列化する
-  const toc = $("h1, h2, h3")
+  const toc = $('h1, h2, h3')
     .toArray()
     .map((data: any) => ({
       text: data.children[0].data,
@@ -39,18 +39,18 @@ const Toc: React.VFC<Props> = ({ htmlString }) => {
                 return (
                   <li
                     className={
-                      toc.name === "h2"
+                      toc.name === 'h2'
                         ? style.h2
-                        : toc.name === "h3"
+                        : toc.name === 'h3'
                         ? style.h3
-                        : toc.name === "h4"
+                        : toc.name === 'h4'
                         ? style.h4
                         : style.none
                     }
                     key={toc.id}
                   >
                     {/* <a href={"#" + toc.id}>{toc.text}</a> */}
-                    <AnchorLink href={"#" + toc.id}>{toc.text}</AnchorLink>
+                    <AnchorLink href={'#' + toc.id}>{toc.text}</AnchorLink>
                   </li>
                 );
               })}
@@ -58,7 +58,7 @@ const Toc: React.VFC<Props> = ({ htmlString }) => {
           </div>
         </div>
       ) : (
-        ""
+        ''
       )}
     </>
   );

@@ -1,13 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-import style from "./BlogContents.module.scss";
+import { highlightCode } from '../../utils/highlightCode';
+import ArticleLink from '../ArticleLink/ArticleLink';
+import Toc from '../Toc/Toc';
 
-import Toc from "../Toc/Toc";
-import { Blog } from "../../types/blog";
-import ArticleLink from "../ArticleLink/ArticleLink";
-import { highlightCode } from "../../utils/highlightCode";
+import style from './BlogContents.module.scss';
+
+import type { Blog } from '../../types/blog';
 
 interface Props {
   blog: Blog;
@@ -44,7 +45,7 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
         <div className={style.body}>
           {/* 記事内容 */}
           {blog.contents?.map((content, i) =>
-            content.fieldId === "richEditor" ? (
+            content.fieldId === 'richEditor' ? (
               <>
                 {/* <div className={style.body}> */}
                 <div
@@ -54,9 +55,9 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
                 />
                 {/* </div> */}
               </>
-            ) : content.fieldId === "articleLink" ? (
+            ) : content.fieldId === 'articleLink' ? (
               <ArticleLink key={i} {...content} />
-            ) : content.fieldId === "table" ? (
+            ) : content.fieldId === 'table' ? (
               <>
                 <div className={style.table}>
                   <div
@@ -66,7 +67,7 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
                   />
                 </div>
               </>
-            ) : content.fieldId === "article_image" ? (
+            ) : content.fieldId === 'article_image' ? (
               <>
                 <Image
                   src={content.articleimg.url}
@@ -76,7 +77,7 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
                 />
               </>
             ) : (
-              ""
+              ''
             )
           )}
         </div>

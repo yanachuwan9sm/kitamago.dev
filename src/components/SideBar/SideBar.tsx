@@ -1,19 +1,21 @@
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
-import { client } from "../../libs/client";
-import { Tag } from "../../types/blog";
-import Profile from "../Profile/Profile";
-import style from "./SideBar.module.scss";
+import { client } from '../../libs/client';
+import Profile from '../Profile/Profile';
+
+import style from './SideBar.module.scss';
+
+import type { Tag } from '../../types/blog';
 
 interface Props {
   tags: Tag[];
 }
 
 const SideBar: React.VFC<Props> = ({ tags }) => {
-  const [inputData, setInputData] = useState("");
+  const [inputData, setInputData] = useState('');
   const router = useRouter();
 
   return (
@@ -26,9 +28,7 @@ const SideBar: React.VFC<Props> = ({ tags }) => {
                 className={style.search_input}
                 type="text"
                 value={inputData}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setInputData(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputData(e.target.value)}
                 placeholder="検索"
                 aria-label="検索ワード"
               />
@@ -37,7 +37,7 @@ const SideBar: React.VFC<Props> = ({ tags }) => {
                 className={style.search_button}
                 onClick={() =>
                   router.push({
-                    pathname: "/search",
+                    pathname: '/search',
                     query: { q: inputData },
                   })
                 }

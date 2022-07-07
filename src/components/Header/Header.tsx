@@ -1,13 +1,13 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import { IconContext } from 'react-icons';
-import { useElementHeight } from '../../hooks/useElementHeight';
-import style from '../Header/Header.module.scss';
-
 import { FaUserAlt } from 'react-icons/fa';
 import { FaRegEnvelope } from 'react-icons/fa';
-import { useRouter } from 'next/router';
+
+import { useElementHeight } from '../../hooks/useElementHeight';
+import style from '../Header/Header.module.scss';
 
 const menuList = [
   {

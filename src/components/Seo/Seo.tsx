@@ -1,5 +1,5 @@
-import { VFC } from "react";
-import Head from "next/head";
+import Head from 'next/head';
+import type { VFC } from 'react';
 
 interface MetaType {
   pageTitle?: string;
@@ -10,16 +10,9 @@ interface MetaType {
   pageImgHeight?: number;
 }
 
-const Seo: VFC<MetaType> = ({
-  pageTitle,
-  pageDescription,
-  pagePath,
-  pageImg,
-  pageImgWidth,
-  pageImgHeight,
-}) => {
-  const defaultTitle = "kitamago-log";
-  const defaultDescription = "ビギナーフロントエンドエンジニアの技術ブログ";
+const Seo: VFC<MetaType> = ({ pageTitle, pageDescription, pagePath, pageImg, pageImgWidth, pageImgHeight }) => {
+  const defaultTitle = 'kitamago-log';
+  const defaultDescription = 'ビギナーフロントエンドエンジニアの技術ブログ';
 
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const description = pageDescription ? pageDescription : defaultDescription;
@@ -46,21 +39,12 @@ const Seo: VFC<MetaType> = ({
       <meta name="twitter:image" content={imgUrl} />
       <meta name="twitter:card" content="summary_large_image" />
       {/* Google Search Console */}
-      <meta
-        name="google-site-verification"
-        content="55w4tS9g30GLrsSYulK6rm-SKy61iRBFhGhOyfG0lEE"
-      />
+      <meta name="google-site-verification" content="55w4tS9g30GLrsSYulK6rm-SKy61iRBFhGhOyfG0lEE" />
       <link rel="icon" href="/favicon.ico" />
       {/* Font Awesome */}
-      <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      ></link>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"></link>
       {/* Google Fonts */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
-        rel="stylesheet"
-      ></link>
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet"></link>
       <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu:wght@500&display=swap"
         rel="stylesheet"

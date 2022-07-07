@@ -1,7 +1,8 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useElementHeight } from "../../hooks/useElementHeight";
-import style from "../Header/Header.module.scss";
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+
+import { useElementHeight } from '../../hooks/useElementHeight';
+import style from '../Header/Header.module.scss';
 
 const ScroolTopButton = () => {
   const [elm, height] = useElementHeight();
@@ -12,9 +13,9 @@ const ScroolTopButton = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -22,9 +23,7 @@ const ScroolTopButton = () => {
     <>
       <header
         ref={elm as React.RefObject<HTMLElement>}
-        className={
-          scroll > height ? style.container_scroll : style.container_defalut
-        }
+        className={scroll > height ? style.container_scroll : style.container_defalut}
       >
         <h1 className={style.title}>kitamago-log</h1>
       </header>

@@ -1,18 +1,18 @@
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import style from '../pages/index.module.scss';
-import { Carousel } from '../components/Carousel/Carousel';
 import AnimationBg from '../components/AnimationBg/AnimationBg';
-
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import { client } from '../libs/client';
-import { Blog, Tag } from '../types/blog';
 import BlogContentsLayout from '../components/BlogContentsLayout/BlogContentsLayout';
+import { Carousel } from '../components/Carousel/Carousel';
 import LatestArticle from '../components/LatestArticle/LatestArticle';
-import SideBar from '../components/SideBar/SideBar';
 import Seo from '../components/Seo/Seo';
+import SideBar from '../components/SideBar/SideBar';
+import { client } from '../libs/client';
+import style from '../pages/index.module.scss';
+
+import type { Blog, Tag } from '../types/blog';
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async () => {
@@ -54,10 +54,7 @@ type Props = {
 //   tags: Tag[];
 // };
 
-const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  blogs,
-  tags,
-}: Props) => {
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs, tags }: Props) => {
   return (
     <>
       <Seo />
