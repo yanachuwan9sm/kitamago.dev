@@ -61,16 +61,11 @@ const Header = () => {
     <>
       <header
         ref={elm as React.RefObject<HTMLElement>}
-        className={
-          scroll > height ? style.container_scroll : style.container_defalut
-        }
+        className={scroll > height ? style.container_scroll : style.container_defalut}
       >
         <div className={style.inner}>
           <IconContext.Provider value={{ color: '#151515', size: '25px' }}>
-            <button
-              className={style.iconbutton}
-              onClick={() => router.push('/')}
-            >
+            <button className={style.iconbutton} onClick={() => router.push('/')}>
               <FaUserAlt />
             </button>
           </IconContext.Provider>
@@ -87,10 +82,7 @@ const Header = () => {
           </ul>
 
           <IconContext.Provider value={{ color: '#151515', size: '25px' }}>
-            <button
-              className={style.mailbutton}
-              onClick={() => router.push('/')}
-            >
+            <button className={style.mailbutton} onClick={() => router.push('/')}>
               <FaRegEnvelope />
             </button>
           </IconContext.Provider>

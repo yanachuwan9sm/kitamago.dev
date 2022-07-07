@@ -1,0 +1,10 @@
+# Next.js
+/.next
+/public
+
+# Node
+/node_modules
+
+# config
+*.config.js
+.eslintrc.js
