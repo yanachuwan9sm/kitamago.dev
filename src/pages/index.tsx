@@ -1,8 +1,8 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 
-import { client } from '../libs/client';
+import { getGlobalContents } from '../libs/getContents';
 
-import type { Blog, Tag } from '../types/blog';
+import type { getContentsResponse as Props } from '../libs/getContents';
 
 import BlogContentsLayout from '@/src/components/BlogContentsLayout/BlogContentsLayout';
 import LatestArticle from '@/src/components/LatestArticle/LatestArticle';
@@ -11,35 +11,19 @@ import SideBar from '@/src/components/SideBar/SideBar';
 
 // microCMSに対してAPIリクエスト
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const data = await client.get({ endpoint: 'blog' });
-  const blog: Blog[] = data.contents;
-  const tags = await client.get({
-    endpoint: 'tag',
-    queries: { orders: '-publishedAt' },
-  });
-
-  const dataList = await client.getList({ endpoint: 'blog' });
-  console.log(dataList);
+  const data = await getGlobalContents();
 
   return {
-    props: {
-      blogs: blog,
-      tags: tags.contents,
-    },
+    props: { ...data },
   };
 };
 
-type Props = {
-  blogs: Blog[];
-  tags: Tag[];
-};
-
-const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs, tags }: Props) => {
+const Home: NextPage<Props> = ({ contents, tags }) => {
   return (
     <>
       <Seo />
       <BlogContentsLayout>
-        <LatestArticle blogs={blogs} />
+        <LatestArticle blogs={contents} />
         <SideBar tags={tags} />
       </BlogContentsLayout>
     </>
