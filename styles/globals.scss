@@ -1,16 +1,17 @@
-// 疑似クラス:root => 値はグローバルに利用可能(html要素内の全てに適応)
-// :root内のカスタムプロパティはグローバルに使用可能
 :root {
   --c-primary: #3ea8ff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  //color: #ececec;
-  //background-color: #151515;
+  outline: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   color: #151515;
   background-color: #f6f6f6;
 }
@@ -18,8 +19,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }

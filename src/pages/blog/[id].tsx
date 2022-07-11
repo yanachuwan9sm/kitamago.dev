@@ -4,42 +4,34 @@ import { useRouter } from 'next/router';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
-import BlogContents from '../../components/BlogContents/BlogContents';
-import BlogContentsLayout from '../../components/BlogContentsLayout/BlogContentsLayout';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Seo from '../../components/Seo/Seo';
-import SideBar from '../../components/SideBar/SideBar';
-import { client } from '../../libs/client';
-
-import type { Blog, Tag } from '../../types/blog';
 
 import 'highlight.js/styles/github-dark-dimmed.css';
+import type { Blog, contentBody } from '@/src/types/blog';
+import type { Tag } from '@/src/types/tag';
+import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 
-// 静的生成のためのパスを指定
-export const getStaticPaths: GetStaticPaths = async () => {
-  const blogs = await client.get({ endpoint: 'blog' });
+import BlogDetailLayout from '@/src/components/BlogDetailLayout/BlogDetailLayout';
+import { getBlogDetail, getCategories, getGlobalContents } from '@/src/libs/getContents';
 
-  const paths = blogs.contents.map((content: Blog) => `/blog/${content.id}`);
-  return {
-    paths, //どのパスが事前レンダリングされるかを決定
-    fallback: false, //getStaticPathsによって返されないパスは404となる
-  };
+type Props = {
+  content: Blog & MicroCMSListContent;
+  tags: MicroCMSListResponse<Tag>['contents'];
+  highlightedBody: string;
 };
 
-// microCMSへAPIリクエスト
-export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-  const id = ctx.params?.id as string;
-  const blog: Blog = await client.get({ endpoint: 'blog', contentId: id });
-  const tags = await client.get({ endpoint: 'tag' });
+export type BlogDetailLayoutProps = Props;
 
+// シンタックスハイライトの生成
+const processingSyntaxHighlight = async (contents: contentBody[]) => {
   // 繰り返しフィールドに応じて記事本文の情報のみを抽出
-  const BodyArray = Array(blog.contents?.length);
-
-  blog.contents?.forEach((content, idx) => {
+  const BodyArray = Array(contents.length);
+  contents.forEach((content) => {
     if (content.fieldId === 'richEditor') {
       BodyArray.push(content.body);
     }
   });
+
   // 取得した記事本文の文字列配列を文字列に変換
   const body = BodyArray.join('');
 
@@ -50,42 +42,87 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     $(elm).addClass('hljs');
   });
 
+  return $.html();
+};
+
+// 静的生成のためのパスを指定
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { contents } = await getGlobalContents();
+  const paths = contents.map((content) => ({
+    params: {
+      id: content.id,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false, // getStaticPathsによって返されないパスは404エラーを返却
+  };
+};
+
+// microCMSへAPIリクエスト
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  if (params === undefined || typeof params.id !== 'string')
+    throw Error('pagesのディレクトリ構造かファイル名が間違っています。');
+
+  // const id = ctx.params?.id as string;
+
+  // const blog: Blog = await client.get({ endpoint: 'blog', contentId: id });
+  // const tags = await client.get({ endpoint: 'tag' });
+
+  const content = await getBlogDetail(params.id);
+  const tags = (await getCategories({ orders: '-publishedAt' })).contents;
+  const highlightedBody = await processingSyntaxHighlight(content.contents);
+
+  // if (content.contents !== undefined) {
+  //   // 繰り返しフィールドに応じて記事本文の情報のみを抽出
+  //   const BodyArray = Array(content.contents.length);
+  //   content.contents.forEach((content) => {
+  //     if (content.fieldId === 'richEditor') {
+  //       BodyArray.push(content.body);
+  //     }
+  //   });
+
+  //   // 取得した記事本文の文字列配列を文字列に変換
+  //   const body = BodyArray.join('');
+
+  //   const $ = cheerio.load(body);
+  //   $('pre code').each((_, elm) => {
+  //     const result = hljs.highlightAuto($(elm).text());
+  //     $(elm).html(result.value);
+  //     $(elm).addClass('hljs');
+  //   });
+
+  //   return {
+  //     content: content,
+  //     highlightedBody: $.html(),
+  //     tags: tags,
+  //   };
+  // }
+
+  // return {
+  //   content: content,
+  //   highlightedBody: highlightedBody,
+  //   tags: tags,
+  // };
+
   return {
     props: {
-      blog,
-      highlightedBody: $.html(),
-      tags: tags.contents,
+      content: content,
+      tags: tags,
+      highlightedBody: highlightedBody,
     },
   };
 };
 
-type Props = {
-  blog: Blog;
-  highlightedBody: string;
-  tags: Tag[];
-};
-
-const BlogId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blog, highlightedBody, tags }: Props) => {
+const BlogId: NextPage<Props> = (props) => {
   const router = useRouter();
   const pagePath = process.env.NEXT_PUBLIC_SERVER_DOMAIN + router.asPath;
   return (
     <>
-      <Seo pageTitle={blog.title} pagePath={pagePath} pageImg={blog.image.url} />
-      <main>
-        <Breadcrumb
-          blogPageInfo={{
-            categoryId: blog.tags[0].id,
-            categoryName: blog.tags[0].tag,
-            blogTitle: blog.title,
-          }}
-          pageTitle={blog.title}
-        />
+      <Seo pageTitle={props.content.title} pagePath={pagePath} pageImg={props.content.image.url} />
 
-        <BlogContentsLayout>
-          <BlogContents blog={blog} highlightedBody={highlightedBody} />
-          <SideBar tags={tags} />
-        </BlogContentsLayout>
-      </main>
+      <BlogDetailLayout {...props} />
     </>
   );
 };

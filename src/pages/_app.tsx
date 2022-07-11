@@ -11,9 +11,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
       {GA_ID !== undefined && <GoogleAnalytics />}
     </>
   );

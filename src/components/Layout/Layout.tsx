@@ -9,13 +9,11 @@ import style from './Layout.module.scss';
 const Layout: React.FC = ({ children }) => {
   return (
     <>
-      <div className={style.container}>
-        <Header />
-        <main className={style.main}>
-          <div>{children}</div>
-        </main>
-        <Footer />
-      </div>
+      <Header />
+      <main className={style.main}>
+        <div className={style.container}>{children}</div>
+      </main>
+      <Footer />
     </>
   );
 };

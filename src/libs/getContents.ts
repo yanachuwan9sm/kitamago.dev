@@ -8,7 +8,7 @@ import type { MicroCMSListContent, MicroCMSListResponse, MicroCMSQueries } from 
 export const getBlogs = (queries?: MicroCMSQueries) => client.getList<Blog>({ endpoint: 'blog', queries });
 
 // 記事詳細を取得する
-export const getBlogDetail = (queries?: MicroCMSQueries) => (contentId: string) =>
+export const getBlogDetail = (contentId: string, queries?: MicroCMSQueries) =>
   client.getListDetail<Blog>({ endpoint: 'blog', contentId, queries });
 
 // カテゴリー情報を取得する
@@ -18,13 +18,12 @@ export const getCategories = (queries?: MicroCMSQueries) => client.getList<Tag>(
 export type getContentsResponse = {
   contents: MicroCMSListResponse<Blog>['contents']; // 記事のデータ一覧
   tags: MicroCMSListResponse<Tag>['contents']; // タグのデータ一覧
-  //   popularArticles: MicroCMSListResponse<Blog>['contents'];
-  currentPage: number;
-  pager: number[];
-  selectedTag?: (Tag & MicroCMSListContent) | null;
+  currentPage: number; //現在のページ数
+  pager: number[]; //ページネーション
+  selectedTag?: (Tag & MicroCMSListContent) | null; //選択されているタグ
 };
 
-// 一ページに表示する記事の最大数
+// 1ページに表示する記事の最大数
 export const pageDisplayLimit = 6;
 
 export async function getGlobalContents(currentPage = 1, tagId?: string): Promise<getContentsResponse> {
