@@ -2,7 +2,7 @@ import type { ArticleImgContent } from './ArticleImgContent';
 import type { ArticleLinkContent } from './ArticleLinkContent';
 import type { RichEditorContent } from './RichEditorContent';
 import type { TableContent } from './TableContent';
-import type { Tag } from './tag';
+import type { Tag } from './Tag';
 import type { MicroCMSImage, MicroCMSListContent } from 'microcms-js-sdk';
 
 // 記事に関する型定義

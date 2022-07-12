@@ -6,8 +6,6 @@ import style from './ArticleLink.module.scss';
 
 import type { ArticleLinkContent } from '@/src/types/ArticleLinkContent';
 
-// import type { ArticleLinkContent } from '../../types/blog';
-
 const ArticleLink: React.VFC<ArticleLinkContent> = ({ article }) => {
   return (
     <>
