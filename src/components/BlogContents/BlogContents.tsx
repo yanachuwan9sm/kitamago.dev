@@ -9,9 +9,10 @@ import Toc from '../Toc/Toc';
 import style from './BlogContents.module.scss';
 
 import type { Blog } from '../../types/blog';
+import type { MicroCMSListContent } from 'microcms-js-sdk';
 
 interface Props {
-  blog: Blog;
+  blog: Blog & MicroCMSListContent;
   highlightedBody: string;
 }
 
@@ -47,13 +48,11 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
           {blog.contents?.map((content, i) =>
             content.fieldId === 'richEditor' ? (
               <>
-                {/* <div className={style.body}> */}
                 <div
                   dangerouslySetInnerHTML={{
                     __html: `${highlightCode(content.body)}`,
                   }}
                 />
-                {/* </div> */}
               </>
             ) : content.fieldId === 'articleLink' ? (
               <ArticleLink key={i} {...content} />

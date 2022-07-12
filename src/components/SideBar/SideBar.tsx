@@ -8,10 +8,11 @@ import Profile from '../Profile/Profile';
 
 import style from './SideBar.module.scss';
 
-import type { Tag } from '../../types/blog';
+import type { Tag } from '@/src/types/tag';
+import type { MicroCMSListContent } from 'microcms-js-sdk';
 
 interface Props {
-  tags: Tag[];
+  tags: (Tag & MicroCMSListContent)[];
 }
 
 const SideBar: React.VFC<Props> = ({ tags }) => {

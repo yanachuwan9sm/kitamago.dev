@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { Blog } from '../../types/blog';
-
 import style from './ArticleLink.module.scss';
 
-import type { ArticleLinkContent } from '../../types/blog';
+import type { ArticleLinkContent } from '@/src/types/ArticleLinkContent';
+
+// import type { ArticleLinkContent } from '../../types/blog';
 
 const ArticleLink: React.VFC<ArticleLinkContent> = ({ article }) => {
   return (

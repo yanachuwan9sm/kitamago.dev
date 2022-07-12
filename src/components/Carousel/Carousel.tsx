@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import { IconContext } from 'react-icons';
 import { FaChevronCircleLeft } from 'react-icons/fa';
 import { FaChevronCircleRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 
-import { Blog } from '../../types/blog';
 import style from '../Carousel/Carousel.module.scss';
 
-import type { Tag } from '../../types/blog';
+import type { Tag } from '@/src/types/tag';
+import type { MicroCMSListContent } from 'microcms-js-sdk';
 import type { CustomArrowProps } from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -23,7 +23,7 @@ type carouselProps = {
     image: string;
     alt: string;
     updatedAt: string;
-    tags: Tag[];
+    tags: (Tag & MicroCMSListContent)[];
   }[];
 };
 
