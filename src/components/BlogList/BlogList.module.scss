@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables.scss';
 
 .content {
   width: 78%;
@@ -13,7 +13,7 @@
   h1 {
     border-bottom: 2px solid #151515;
     &::before {
-      @include fa_icon("tag");
+      @include fa_icon('tag');
       margin-right: 0.8rem;
     }
   }
@@ -42,7 +42,7 @@
         }
         p {
           &::before {
-            @include fa_icon("clock");
+            @include fa_icon('clock');
             margin-right: 6px;
           }
         }

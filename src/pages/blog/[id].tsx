@@ -65,51 +65,14 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (params === undefined || typeof params.id !== 'string')
     throw Error('pagesのディレクトリ構造かファイル名が間違っています。');
 
-  // const id = ctx.params?.id as string;
-
-  // const blog: Blog = await client.get({ endpoint: 'blog', contentId: id });
-  // const tags = await client.get({ endpoint: 'tag' });
-
   const content = await getBlogDetail(params.id);
-  const tags = (await getCategories({ orders: '-publishedAt' })).contents;
+  const tags = await getCategories({ orders: '-publishedAt' });
   const highlightedBody = await processingSyntaxHighlight(content.contents);
-
-  // if (content.contents !== undefined) {
-  //   // 繰り返しフィールドに応じて記事本文の情報のみを抽出
-  //   const BodyArray = Array(content.contents.length);
-  //   content.contents.forEach((content) => {
-  //     if (content.fieldId === 'richEditor') {
-  //       BodyArray.push(content.body);
-  //     }
-  //   });
-
-  //   // 取得した記事本文の文字列配列を文字列に変換
-  //   const body = BodyArray.join('');
-
-  //   const $ = cheerio.load(body);
-  //   $('pre code').each((_, elm) => {
-  //     const result = hljs.highlightAuto($(elm).text());
-  //     $(elm).html(result.value);
-  //     $(elm).addClass('hljs');
-  //   });
-
-  //   return {
-  //     content: content,
-  //     highlightedBody: $.html(),
-  //     tags: tags,
-  //   };
-  // }
-
-  // return {
-  //   content: content,
-  //   highlightedBody: highlightedBody,
-  //   tags: tags,
-  // };
 
   return {
     props: {
       content: content,
-      tags: tags,
+      tags: tags.contents,
       highlightedBody: highlightedBody,
     },
   };
@@ -121,7 +84,6 @@ const BlogId: NextPage<Props> = (props) => {
   return (
     <>
       <Seo pageTitle={props.content.title} pagePath={pagePath} pageImg={props.content.image.url} />
-
       <BlogDetailLayout {...props} />
     </>
   );

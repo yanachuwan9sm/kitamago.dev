@@ -1,18 +1,28 @@
 import '../../styles/globals.scss';
 import type { AppProps } from 'next/app';
+import Script from 'next/script';
 
 import usePageView from '../hooks/usePageView';
 import { GA_ID } from '../libs/gtag';
-
-import GoogleAnalytics from '@/src/components/GoogleAnalytics/GoogleAnalytics';
-import Layout from '@/src/components/Layout/Layout';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
   return (
     <>
       <Component {...pageProps} />
-      {GA_ID !== undefined && <GoogleAnalytics />}
+      {GA_ID !== undefined && (
+        <>
+          <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+          <Script id="ga" defer strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());    
+              gtag('config', '${GA_ID}');
+          `}
+          </Script>
+        </>
+      )}
     </>
   );
 };

@@ -4,21 +4,19 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-import CategoryArticleList from '../../components/CategoryArticleList/CategoryArticleList';
 import Seo from '../../components/Seo/Seo';
 import SideBar from '../../components/SideBar/SideBar';
 
 import style from './index.module.scss';
 
 import type { Blog } from '@/src/types/blog';
+import type { Tag } from '@/src/types/tag';
 import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 
+import BlogList from '@/src/components/BlogList/BlogList';
 import Footer from '@/src/components/Footer/Footer';
 import Header from '@/src/components/Header/Header';
 import { getCategories } from '@/src/libs/getContents';
-
-// eslint-disable-next-line import/order
-import type { Tag } from '@/src/types/tag';
 
 type Props = {
   tags: (Tag & MicroCMSListContent)[];
@@ -65,7 +63,8 @@ const SearchArtile: NextPage<Props> = ({ tags }) => {
           ) : data.contents.length === 0 ? (
             <div className={style.container}>記事がありません</div>
           ) : (
-            <CategoryArticleList id={router.query.q as string} blogs={data.contents} />
+            // <CategoryArticleList id={router.query.q as string} blogs={data.contents} />
+            <BlogList heading={router.query.q as string} contents={data.contents} />
           )}
           <SideBar tags={tags} />
         </div>

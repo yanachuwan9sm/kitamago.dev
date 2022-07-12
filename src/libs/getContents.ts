@@ -26,8 +26,8 @@ export type getContentsResponse = {
 // 1ページに表示する記事の最大数
 export const pageDisplayLimit = 6;
 
-export async function getGlobalContents(currentPage = 1, tagId?: string): Promise<getContentsResponse> {
-  const filters = tagId === undefined ? '' : `tag[equals]${tagId}`;
+export async function getGlobalContents(tagId?: string, currentPage = 1): Promise<getContentsResponse> {
+  const filters = tagId === undefined ? '' : `tags[contains]${tagId}`;
 
   //次ページで表示する記事を取得
   const offset = (currentPage - 1) * pageDisplayLimit;
@@ -45,7 +45,15 @@ export async function getGlobalContents(currentPage = 1, tagId?: string): Promis
   // ページ数を記事のデータ数から計算する
   const pager = [...Array(Math.ceil(totalCount / pageDisplayLimit)).keys()];
 
-  const selectedTag = tags.find((content) => content.id === tagId) || null;
+  if (tagId === undefined) {
+    return { contents, tags, currentPage, pager, selectedTag: null };
+  }
+
+  const selectedTag = tags.find((content) => content.id === tagId);
+
+  if (selectedTag === undefined) {
+    throw Error();
+  }
 
   return { contents, tags, currentPage, pager, selectedTag };
 }

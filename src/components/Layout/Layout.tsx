@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
@@ -10,9 +11,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <main className={style.main}>
-        <div className={style.container}>{children}</div>
-      </main>
+      <main className={style.main}>{children}</main>
       <Footer />
     </>
   );
