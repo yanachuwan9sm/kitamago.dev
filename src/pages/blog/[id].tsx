@@ -7,8 +7,8 @@ import hljs from 'highlight.js';
 import Seo from '../../components/Seo/Seo';
 
 import 'highlight.js/styles/github-dark-dimmed.css';
+import type { Tag } from '@/src/types/Tag';
 import type { Blog, contentBody } from '@/src/types/blog';
-import type { Tag } from '@/src/types/tag';
 import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 
 import BlogDetailLayout from '@/src/components/BlogDetailLayout/BlogDetailLayout';

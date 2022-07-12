@@ -1,7 +1,5 @@
-import Head from 'next/head';
 import React from 'react';
 
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 

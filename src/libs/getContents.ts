@@ -1,7 +1,7 @@
 import { client } from './client';
 
+import type { Tag } from '../types/Tag';
 import type { Blog } from '../types/blog';
-import type { Tag } from '../types/tag';
 import type { MicroCMSListContent, MicroCMSListResponse, MicroCMSQueries } from 'microcms-js-sdk';
 
 // 記事全体を取得する

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import cheerio from 'cheerio';
-import { data } from 'cheerio/lib/api/attributes';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 import style from './Toc.module.scss';

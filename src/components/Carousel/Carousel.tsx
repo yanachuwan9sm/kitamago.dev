@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 
 import style from '../Carousel/Carousel.module.scss';
 
-import type { Tag } from '@/src/types/tag';
+import type { Tag } from '@/src/types/Tag';
 import type { MicroCMSListContent } from 'microcms-js-sdk';
 import type { CustomArrowProps } from 'react-slick';
 

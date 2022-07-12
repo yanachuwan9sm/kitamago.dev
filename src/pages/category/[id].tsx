@@ -5,7 +5,7 @@ import BlogListLayout from '../../components/BlogListLayout/BlogListLayout';
 import Seo from '../../components/Seo/Seo';
 
 import type { getContentsResponse as Props } from '../../libs/getContents';
-import type { Tag } from '@/src/types/tag';
+import type { Tag } from '@/src/types/Tag';
 import type { MicroCMSListResponse } from 'microcms-js-sdk';
 
 import { getCategories, getGlobalContents } from '@/src/libs/getContents';

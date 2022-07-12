@@ -5,7 +5,6 @@ import React from 'react';
 import style from './BlogList.module.scss';
 
 import type { Blog } from '../../types/blog';
-import type { Tag } from '@/src/types/tag';
 import type { MicroCMSListContent } from 'microcms-js-sdk';
 
 interface Props {

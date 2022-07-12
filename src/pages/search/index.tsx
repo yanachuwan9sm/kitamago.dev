@@ -9,8 +9,8 @@ import SideBar from '../../components/SideBar/SideBar';
 
 import style from './index.module.scss';
 
+import type { Tag } from '@/src/types/Tag';
 import type { Blog } from '@/src/types/blog';
-import type { Tag } from '@/src/types/tag';
 import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 
 import BlogList from '@/src/components/BlogList/BlogList';

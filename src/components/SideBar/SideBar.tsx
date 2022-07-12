@@ -8,7 +8,7 @@ import Profile from '../Profile/Profile';
 
 import style from './SideBar.module.scss';
 
-import type { Tag } from '@/src/types/tag';
+import type { Tag } from '@/src/types/Tag';
 import type { MicroCMSListContent } from 'microcms-js-sdk';
 
 interface Props {
