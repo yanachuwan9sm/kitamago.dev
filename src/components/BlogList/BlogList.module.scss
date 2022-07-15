@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 
-.content {
+.container {
   width: 78%;
   padding: 0 1rem;
   @include mq(lg) {
@@ -37,14 +37,20 @@
       }
 
       a {
+        .article_date {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          p {
+            color: #494949;
+            &::before {
+              @include fa_icon('clock');
+              margin-right: 6px;
+            }
+          }
+        }
         h2 {
           font-size: large;
-        }
-        p {
-          &::before {
-            @include fa_icon('clock');
-            margin-right: 6px;
-          }
         }
       }
     }

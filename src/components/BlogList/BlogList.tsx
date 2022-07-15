@@ -15,7 +15,7 @@ interface Props {
 const BlogList: React.VFC<Props> = ({ heading, contents }) => {
   return (
     <>
-      <div className={style.content}>
+      <div className={style.container}>
         <h1>{heading !== undefined ? heading : '最新記事'}</h1>
         {contents && (
           <ul>
@@ -24,9 +24,12 @@ const BlogList: React.VFC<Props> = ({ heading, contents }) => {
                 <li key={content.id}>
                   <Link href={`/blog/${content.id}`}>
                     <a>
-                      <Image className={style.carouselItemImage} src={content.image.url} width="580px" height="360px" />
+                      <Image src={content.image.url} width="580px" height="360px" />
+                      <div className={style.article_date}>
+                        <p>{content.publishedAt.slice(0, 10)}</p>
+                        <p>{content.updatedAt.slice(0, 10)}</p>
+                      </div>
                       <h2>{content.title}</h2>
-                      <p>{content.publishedAt.slice(0, 10)}</p>
                     </a>
                   </Link>
                 </li>

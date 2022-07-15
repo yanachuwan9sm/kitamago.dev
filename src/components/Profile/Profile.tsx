@@ -5,7 +5,13 @@ import style from './Profile.module.scss';
 const Profile = () => {
   return (
     <div className={style.wrapper}>
-      <img className={style.profileimage} src="/image/icon.png" width={100} height={100} />
+      <img
+        className={style.profileimage}
+        src="/image/icon.png"
+        width={100}
+        height={100}
+        alt={'kitamagoのプロフィール画像'}
+      />
       <div className={style.profilename}>kitamago</div>
       <div className={style.profilejob}>Frontend Engineer</div>
       <div className={style.profiletext}>

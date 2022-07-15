@@ -36,6 +36,7 @@ const processingSyntaxHighlight = async (contents: contentBody[]) => {
   const body = BodyArray.join('');
 
   const $ = cheerio.load(body);
+
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);

@@ -1,12 +1,68 @@
-// 使いまわしたい変数をここに入れる
-//
+// Font
+
+// Color
+$color_pureWhite: #fff;
+
+// Header Color
+$header_bgColor: $color_pureWhite;
+$header_bgColor-scrolled: rgba(255, 255, 255, 0.6);
+$header_color: #272727;
+
+// const
+$contents_maxWidth: 1145px;
+
+// z-index
+$header_zIndex: 30;
+
+// BreakPoints
 
 $breakpoints: (
-  "sm": 576px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
 );
+
+// レスポンシブ対応用の mixin
+@mixin mq($size) {
+  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
+    @content;
+  }
+}
+
+// Font Awesome
+@mixin fa_icon($type: '') {
+  $font_weight: 900;
+
+  font-style: normal;
+  font-family: 'Font Awesome 5 Free';
+  font-variant: normal;
+  text-rendering: auto;
+  letter-spacing: 0;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  @if $type == 'chevron-up' {
+    content: '\f077';
+  } @else if $type == 'chevron-right' {
+    content: '\f054';
+  } @else if $type == 'chevron-down' {
+    content: '\f078';
+  } @else if $type == 'chevron-left' {
+    content: '\f053';
+  } @else if $type == 'clock' {
+    content: '\f017';
+  } @else if $type == 'tag' {
+    content: '\f02b';
+  } @else if $type == 'list-ul' {
+    content: '\f0ca';
+  } @else if $type == 'search' {
+    content: '\f002';
+  }
+
+  font-weight: $font_weight;
+}
 
 $red: (
   50: #ffebee,
@@ -20,44 +76,3 @@ $red: (
   800: #c62828,
   900: #b71c1c,
 );
-
-// レスポンシブ対応用の mixin
-@mixin mq($size) {
-  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
-    @content;
-  }
-}
-
-// Font Awesome用の mixin
-@mixin fa_icon($type: "") {
-  $font_weight: 900;
-
-  font-style: normal;
-  font-family: "Font Awesome 5 Free";
-  font-variant: normal;
-  text-rendering: auto;
-  letter-spacing: 0;
-  line-height: 1;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-
-  @if $type == "chevron-up" {
-    content: "\f077";
-  } @else if $type == "chevron-right" {
-    content: "\f054";
-  } @else if $type == "chevron-down" {
-    content: "\f078";
-  } @else if $type == "chevron-left" {
-    content: "\f053";
-  } @else if $type == "clock" {
-    content: "\f017";
-  } @else if $type == "tag" {
-    content: "\f02b";
-  } @else if $type == "list-ul" {
-    content: "\f0ca";
-  } @else if $type == "search" {
-    content: "\f002";
-  }
-
-  font-weight: $font_weight;
-}
