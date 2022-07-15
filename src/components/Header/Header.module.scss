@@ -72,13 +72,13 @@
         height: 2px;
         background: inherit;
         transform: translateX(-50%);
-        animation: border_anim 0.5s linear forwards;
+        animation: animation 0.5s linear forwards;
       }
     }
   }
 }
 
-@keyframes border_anim {
+@keyframes animation {
   0% {
     width: 0%;
   }

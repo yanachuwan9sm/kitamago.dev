@@ -1,3 +1,5 @@
+const { off } = require('process');
+
 module.exports = {
   env: {
     browser: true,
@@ -34,6 +36,8 @@ module.exports = {
     '@next/next/no-img-element': 0,
     // 未使用の変数がある場合エラーにする（デフォルトは warning）
     '@typescript-eslint/no-unused-vars': 'off',
+    // 追加されるカスタムフォントを許容 (フォントの最適化が行われないため)
+    '@next/next/no-page-custom-font': 'off',
     // import
     'import/order': [
       'error',

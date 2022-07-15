@@ -44,6 +44,10 @@ const Seo: VFC<MetaType> = ({ pageTitle, pageDescription, pagePath, pageImg, pag
       {/* Font Awesome */}
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"></link>
       {/* Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      ></link>
       <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet"></link>
       <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu:wght@500&display=swap"
