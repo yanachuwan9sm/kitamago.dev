@@ -41,7 +41,6 @@
     "@react-spring/types": "^9.4.4",
     "@types/cheerio": "^0.22.31",
     "@types/gtag.js": "0.0.10",
-    "@types/highlightjs": "^9.12.2",
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@types/react-anchor-link-smooth-scroll": "^1.0.2",

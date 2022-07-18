@@ -1,11 +1,11 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables.scss';
 
 .container {
   width: 100%;
 }
 
 .breadcrumb {
-  margin-bottom: 20px;
+  margin-top: 1rem;
   padding: 0.3rem 0 0.3rem 1rem;
   list-style: none;
 }
@@ -23,11 +23,11 @@
   }
   &::after {
     position: absolute;
-    content: ">";
+    content: '>';
     bottom: -1px;
     right: -15px;
   }
   &:last-child::after {
-    content: "";
+    content: '';
   }
 }

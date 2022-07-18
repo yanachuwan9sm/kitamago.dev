@@ -10,48 +10,170 @@
     padding: 0 0.2rem;
   }
 
-  h1 {
-    border-bottom: 2px solid #151515;
-    &::before {
-      @include fa_icon('tag');
-      margin-right: 0.8rem;
+  .heading_wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    .h1 {
+      color: #494949;
+      font-size: medium;
+
+      @include mq(sm) {
+        font-size: 1rem;
+      }
+    }
+
+    .display_toggle {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      list-style: none;
+      gap: 10px;
+      margin-left: auto;
+      margin-right: 0.6rem;
+
+      .icon_button {
+        color: #c1c1c1;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          color: #494949;
+        }
+      }
+
+      .active {
+        color: #494949;
+      }
     }
   }
 
-  ul {
+  .divide {
+    margin: 0.6rem auto 0;
+    display: block;
+    width: 97%;
+    height: 2px;
+    background-color: #e7e7e7;
+    border: 0;
+  }
+
+  .listItemContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     list-style: none;
-    padding-left: 0px;
+    margin-top: 1rem;
+    gap: 10px;
+    transition: 0.2s ease;
 
-    li {
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin: 0 10px 10px 0;
-      width: calc(50% - 10px);
-      @include mq(md) {
-        width: calc(100% - 10px);
-      }
+    &_visual {
+      @extend .listItemContainer;
 
-      a {
-        .article_date {
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          p {
-            color: #494949;
-            &::before {
-              @include fa_icon('clock');
-              margin-right: 6px;
-            }
+      flex-direction: column;
+      .listItem {
+        width: 90%;
+
+        @include mq(md) {
+          width: 100%;
+        }
+
+        .article_layout {
+          flex-direction: column;
+        }
+
+        h2 {
+          @include mq(sp) {
+            font-size: medium;
           }
         }
-        h2 {
-          font-size: large;
+      }
+    }
+
+    &_detail {
+      @extend .listItemContainer;
+
+      flex-direction: column;
+      .listItem {
+        width: 90%;
+
+        @include mq(md) {
+          width: 100%;
         }
+
+        .article_layout {
+          flex-direction: row;
+          gap: 10px;
+
+          .article_image {
+            flex: 1;
+          }
+
+          .article_content {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    &_2row {
+      @extend .listItemContainer;
+      flex-direction: row;
+
+      .article_layout {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .listItem {
+    box-sizing: border-box;
+    padding: 0.5rem;
+    width: calc(50% - 10px);
+
+    .article_layout {
+      display: flex;
+    }
+
+    .article_image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+
+      img {
+        transition: transform 0.2s linear;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .article_date {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      p {
+        font-size: 0.9rem;
+        color: #494949;
+        &::before {
+          @include fa_icon('clock');
+          margin-right: 6px;
+        }
+
+        @include mq(sm) {
+          font-size: 0.65rem;
+        }
+      }
+    }
+    .article_title {
+      font-size: large;
+
+      @include mq(md) {
+        font-size: medium;
+      }
+
+      @include mq(sm) {
+        font-size: small;
       }
     }
   }

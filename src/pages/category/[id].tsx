@@ -37,13 +37,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const tag = await filterTagId(tags.contents, params.id);
   const content = await getGlobalContents(tag?.id as string);
 
-  console.log(content.contents);
   return {
     props: { ...content },
   };
 };
 
-const CategoryId: NextPage<Props> = (props, { contents, tags }) => {
+const CategoryId: NextPage<Props> = (props) => {
   const router = useRouter();
   const { id } = router.query;
 

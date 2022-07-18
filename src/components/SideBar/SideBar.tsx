@@ -1,9 +1,7 @@
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { client } from '../../libs/client';
 import Profile from '../Profile/Profile';
 
 import style from './SideBar.module.scss';
@@ -30,12 +28,21 @@ const SideBar: React.VFC<Props> = ({ tags }) => {
                 type="text"
                 value={inputData}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputData(e.target.value)}
-                placeholder="検索"
+                onKeyPress={(e) => {
+                  if (e.key == 'Enter') {
+                    e.preventDefault();
+                    router.push({
+                      pathname: '/search',
+                      query: { q: inputData },
+                    });
+                  }
+                }}
+                placeholder="ブログ内検索"
                 aria-label="検索ワード"
               />
               <button
                 type="button"
-                className={style.search_button}
+                className={inputData.length > 0 ? `${style.search_button} ${style.is_active}` : style.search_button}
                 onClick={() =>
                   router.push({
                     pathname: '/search',
@@ -56,10 +63,10 @@ const SideBar: React.VFC<Props> = ({ tags }) => {
           <div className={style.s_header}>タグ</div>
           <div className={style.s_content}>
             {tags && (
-              <ul>
+              <ul className={style.s_taglist}>
                 {tags.map((tag) => (
                   <>
-                    <li key={tag.id}>
+                    <li key={tag.id} className={style.s_taglistitem}>
                       <Link href={`/category/${tag.tag}`}>
                         <a>
                           <p>{tag.tag}</p>
@@ -71,10 +78,6 @@ const SideBar: React.VFC<Props> = ({ tags }) => {
               </ul>
             )}
           </div>
-        </div>
-        <div className={style.s_container}>
-          <div className={style.s_header}>新着記事</div>
-          <div className={style.s_content}>kitamago</div>
         </div>
       </aside>
     </>

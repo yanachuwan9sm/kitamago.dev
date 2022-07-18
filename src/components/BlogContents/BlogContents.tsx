@@ -38,7 +38,9 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
         </div>
 
         {/* 記事タイトル画像 */}
-        <Image src={blog.image.url} width="500" height="380" alt="blog-image" />
+        <div className={style.image}>
+          <Image src={blog.image.url} layout="fill" objectFit="contain" alt="" />
+        </div>
 
         {/* 目次 */}
         <Toc htmlString={highlightedBody} />

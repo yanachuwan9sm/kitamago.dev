@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 import style from './Profile.module.scss';
@@ -5,13 +6,9 @@ import style from './Profile.module.scss';
 const Profile = () => {
   return (
     <div className={style.wrapper}>
-      <img
-        className={style.profileimage}
-        src="/image/icon.png"
-        width={100}
-        height={100}
-        alt={'kitamagoのプロフィール画像'}
-      />
+      <div className={style.profileimage}>
+        <Image src="/image/icon.png" layout="fill" objectFit="contain" alt="kitamagoのプロフィール画像" />
+      </div>
       <div className={style.profilename}>kitamago</div>
       <div className={style.profilejob}>Frontend Engineer</div>
       <div className={style.profiletext}>

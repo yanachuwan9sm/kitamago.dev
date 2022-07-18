@@ -7,7 +7,13 @@
   .profileimage {
     margin: 1rem auto 0 auto;
 
-    border-radius: 50px;
+    position: relative;
+    width: 100px;
+    aspect-ratio: 1 / 1;
+
+    img {
+      border-radius: 50%;
+    }
   }
 
   .profilename {

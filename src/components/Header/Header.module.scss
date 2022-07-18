@@ -70,15 +70,15 @@
         bottom: -25%;
         width: 60%;
         height: 2px;
-        background: inherit;
+        background: #151515;
         transform: translateX(-50%);
-        animation: animation 0.5s linear forwards;
+        animation: border_anim 0.5s linear forwards;
       }
     }
   }
 }
 
-@keyframes animation {
+@keyframes border_anim {
   0% {
     width: 0%;
   }
