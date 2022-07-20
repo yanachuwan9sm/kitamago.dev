@@ -70,12 +70,16 @@ const BlogContents: React.VFC<Props> = ({ blog, highlightedBody }) => {
               </>
             ) : content.fieldId === 'article_image' ? (
               <>
-                <Image
-                  src={content.articleimg.url}
-                  width={content.articleimg.width}
-                  height={content.articleimg.height}
-                  alt="blog-image"
-                />
+                <div className={style.insert_image}>
+                  <Image
+                    src={content.articleimg.url}
+                    layout="fill"
+                    objectFit="contain"
+                    // width={content.articleimg.width}
+                    // height={content.articleimg.height}
+                    alt="blog-image"
+                  />
+                </div>
               </>
             ) : (
               ''

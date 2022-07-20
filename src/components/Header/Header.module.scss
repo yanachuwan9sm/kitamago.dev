@@ -32,8 +32,7 @@
 .title {
   color: $header_color;
   @include mq(md) {
-    font-size: 1.7rem;
-
+    font-size: 1.2rem;
     text-align: center;
   }
 }
