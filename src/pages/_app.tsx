@@ -1,15 +1,17 @@
 import 'ress';
-import '../../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 
 import usePageView from '../hooks/usePageView';
 import { GA_ID } from '../libs/gtag';
 
+import GlobalStyle from './globalStyle';
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
   return (
     <>
+      <GlobalStyle />
       <Component {...pageProps} />
       {GA_ID !== undefined && (
         <>
