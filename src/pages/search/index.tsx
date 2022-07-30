@@ -16,7 +16,7 @@ import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk'
 import BlogList from '@/src/components/BlogList/BlogList';
 import Footer from '@/src/components/Footer/Footer';
 import Header from '@/src/components/Header/Header';
-import { getCategories } from '@/src/libs/getContents';
+import { getCategories } from '@/src/utils/microCMS/getContents';
 
 type Props = {
   tags: (Tag & MicroCMSListContent)[];

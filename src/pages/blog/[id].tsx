@@ -1,4 +1,4 @@
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 import cheerio from 'cheerio';
@@ -11,8 +11,8 @@ import type { Blog, contentBody } from '@/src/types/blog';
 import type { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 
 import BlogDetailLayout from '@/src/components/BlogDetailLayout/BlogDetailLayout';
-import { getBlogDetail, getCategories, getGlobalContents } from '@/src/libs/getContents';
 import hljs from '@/src/utils/highlight';
+import { getBlogDetail, getCategories, getGlobalContents } from '@/src/utils/microCMS/getContents';
 
 type Props = {
   content: Blog & MicroCMSListContent;

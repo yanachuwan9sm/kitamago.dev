@@ -7,7 +7,7 @@ import SideBar from '../SideBar/SideBar';
 
 import style from './BlogListLayout.module.scss';
 
-import type { getContentsResponse } from '@/src/libs/getContents';
+import type { getContentsResponse } from '@/src/utils/microCMS/getContents';
 
 type Props = getContentsResponse;
 

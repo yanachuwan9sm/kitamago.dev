@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next';
 
-import { getGlobalContents } from '../libs/getContents';
+import { getGlobalContents } from '../utils/microCMS/getContents';
 
-import type { getContentsResponse as Props } from '../libs/getContents';
+import type { getContentsResponse as Props } from '../utils/microCMS/getContents';
 
 import BlogListLayout from '@/src/components/BlogListLayout/BlogListLayout';
 import Seo from '@/src/components/Seo/Seo';

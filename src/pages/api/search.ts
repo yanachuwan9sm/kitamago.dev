@@ -1,9 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { MicroCMSQueries } from 'microcms-js-sdk';
-
-import { client } from '../../libs/client';
-import { Blog } from '../../types/blog';
+import { client } from '../../utils/microCMS/client';
 
 const search = async (req: NextApiRequest, res: NextApiResponse) => {
   if (typeof req.query.q !== 'string') {

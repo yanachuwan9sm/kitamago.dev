@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import BlogListLayout from '../../components/BlogListLayout/BlogListLayout';
 import Seo from '../../components/Seo/Seo';
 
-import type { getContentsResponse as Props } from '../../libs/getContents';
+import type { getContentsResponse as Props } from '../../utils/microCMS/getContents';
 import type { Tag } from '@/src/types/Tag';
 import type { MicroCMSListResponse } from 'microcms-js-sdk';
 
-import { getCategories, getGlobalContents } from '@/src/libs/getContents';
+import { getCategories, getGlobalContents } from '@/src/utils/microCMS/getContents';
 
 // 取得したパスより一致するカテゴリーのid値を取得
 const filterTagId = async (tags: MicroCMSListResponse<Tag>['contents'], targetQuery: string) => {

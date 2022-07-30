@@ -3,16 +3,21 @@ import type { AppProps } from 'next/app';
 import Script from 'next/script';
 
 import usePageView from '../hooks/usePageView';
-import { GA_ID } from '../libs/gtag';
+import { GA_ID } from '../utils/gtag';
+import { ThemeProvider } from '../utils/theme';
 
-import GlobalStyle from './globalStyle';
+import { GlobalStyle } from './ThemeConfig';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
   return (
     <>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+
+      {/* </ThemeProvider> */}
       {GA_ID !== undefined && (
         <>
           <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />

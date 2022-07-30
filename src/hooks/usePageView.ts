@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { GA_ID, pageview } from '../libs/gtag';
+import { GA_ID, pageview } from '../utils/gtag';
 
 // PV数をカウントするカスタムフック
 export default function usePageView() {
