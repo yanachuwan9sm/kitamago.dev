@@ -5,9 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { FaUserAlt } from 'react-icons/fa';
 import { FaRegEnvelope } from 'react-icons/fa';
+import { useTheme } from 'styled-components';
 
 import { useElementHeight } from '../../hooks/useElementHeight';
 import style from '../Header/Header.module.scss';
+
+import { useTheme as useSetTheme } from '@/src/utils/theme';
 
 const menuList = [
   {
@@ -24,10 +27,17 @@ const Header = () => {
   const [elm, height] = useElementHeight();
   const [scroll, setScroll] = useState(0);
 
+  const { theme, setTheme } = useSetTheme();
+
   const router = useRouter();
 
   const handleScroll = () => {
     setScroll(window.scrollY);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+    console.log(theme);
   };
 
   useEffect(() => {
@@ -45,7 +55,7 @@ const Header = () => {
       >
         <div className={style.inner}>
           <IconContext.Provider value={{ color: '#151515', size: '25px' }}>
-            <button className={style.icon_button} onClick={() => router.push('/')}>
+            <button className={style.icon_button} onClick={() => toggleTheme()}>
               <FaUserAlt />
             </button>
           </IconContext.Provider>
